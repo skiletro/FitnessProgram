@@ -7,8 +7,7 @@ document.body.addEventListener('mousemove', (event) => {
     clientY = event.clientY;
 })
 
-// Handle clicking on 
-
+// Handle clicking on the diagrams
 const Open = (action) => {
     document.getElementById("bodyLocation").innerText = action;
 
@@ -36,8 +35,17 @@ const Parse = async (action) => {
     document.getElementById("exercises").innerText = exercises;
 }
 
+document.getElementById("toggleAnnotations").addEventListener('change', (event) => {
+    let img = document.getElementById("diagramImage");
+    if (event.target.checked) {
+        img.src = "assets/diagrams/unannotated.svg";
+    } else {
+        img.src = "assets/diagrams/blank.svg";
+    }
+})
+
 // Disable dragging image
-document.getElementById('diagram').ondragstart = () => { return false; }
+document.getElementById("diagram").ondragstart = () => { return false; }
 
 // https://github.com/davidjbradshaw/image-map-resizer
 imageMapResize();

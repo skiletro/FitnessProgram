@@ -10,7 +10,7 @@
     <span>Location: <span id="bodyLocation">none</span></span>
     <div id="diagram">
         <div id="selector"></div>
-        <img src="assets/diagrams/unannotated.svg" width="480em" usemap="#image-map">
+        <img id="diagramImage" src="assets/diagrams/unannotated.svg" width="480em" usemap="#image-map">
         <map name="image-map">
             <area onclick="Open('neck')" coords="527,165,574,166,583,189,596,204,576,218,524,218,507,203,523,186" shape="poly">
             <area onclick="Open('shoulders')" coords="131,231,181,210,204,200,279,199,335,221,354,233,329,251,285,235,267,202,215,202,199,233,161,251" shape="poly">
@@ -40,6 +40,10 @@
             <area onclick="Open('quadriceps')" coords="260,541,322,541,324,581,310,665,299,746,265,746,263,655,259,577" shape="poly">
         </map>
     </div>
+    <label for="toggleAnnotations">
+        <input type="checkbox" id="toggleAnnotations" name="toggleAnnotations" checked>
+        Toggle Annotations
+    </label>
     <span>Exercises: <span id="exercises">none</span></span>
 
     <script src="assets/scripts/imageMapResizer.min.js"></script>
