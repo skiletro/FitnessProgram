@@ -28,7 +28,7 @@ const Parse = async (action) => {
 
     json.forEach(element => {
         if (element.primaryMuscles.includes(action)) {
-            exercises.push(element.name);
+            exercises.push(" " + element.name);
         }
     });
 

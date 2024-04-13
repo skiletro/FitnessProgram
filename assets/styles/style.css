@@ -1,7 +1,23 @@
+:root {
+    --background: #ffffff;
+    --hover: #e2e2e2;
+    --accent: #ab4aff;
+    --radius: 20px;
+    --transition-time: 250ms;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bahnschrift', sans-serif;
+    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* General */
 body {
     display: flex;
-    background-color: grey;
-    overflow-x: hidden;
+    background-color: --background;
     /*justify-content: center;*/
     align-items: center;
     flex-direction: column;
@@ -9,6 +25,176 @@ body {
     height: 100vh;
 }
 
+#nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    margin: 10px; /* temp */
+    border: 4px solid black;
+    border-radius: var(--radius);
+    width: 95%;
+    height: 80px;
+
+    & #logo {
+        font-size: 40px;
+
+        & .accent {
+            font-weight: bold;
+            color: var(--accent);
+        }
+    }
+
+    & #items {
+        display: flex;
+        flex-direction: row;
+
+        & #add {
+            background-color: var(--accent);
+            color: white;
+            transition: background-color 250ms;
+            border: 0;
+            border-radius: 9999px;
+            width: 55px;
+            height: 55px;
+            font-size: 20px;
+
+            &:hover {
+                background-color: color-mix(in srgb, black 10%, var(--accent));
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#main {
+    display: flex;
+    border: 4px solid black;
+    border-radius: var(--radius);
+    padding: 10px;
+}
+
+#information {
+    width: 380px;
+    padding: 10px;
+
+    & .currentdayname {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    & .currentdaywritten {
+        font-size: 40px;
+    }
+
+    & .title {
+        font-size: 24px;
+        color: rgb(136, 136, 136);
+    }
+
+    & .subtitle {
+        font-size: 20px;
+    }
+}
+
+/* Calendar */
+#calendar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    /*border: 4px solid black;
+    border-radius: var(--radius);*/
+    width: 1400px;
+    height: 700px;
+}
+
+#calendar .header {
+    display: flex;
+    height: 45px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0px 10px 10px 10px;
+
+    & .date {
+        font-size: 40px;
+
+        & .month {
+            font-weight: bold;
+        }
+    }
+
+    & .switcher {
+        margin: 0;
+        & button {
+            align-items: center;
+            height: 40px;
+            font-size: 20px;
+            background-color: var(--background);
+            transition: background-color var(--transition-time);
+            border: 4px solid black;
+            padding: 0px 10px;
+        }
+        
+        & .left {
+            border-right: 0;
+            border-top-left-radius: var(--radius);
+            border-bottom-left-radius: var(--radius);
+        }
+
+        & button:hover {
+            background-color: var(--hover);
+        }
+
+        & .right {
+            border-left: 0;
+            border-top-right-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+        }
+    }
+}
+
+#calendar .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    flex: 1;
+    background-color: var(--background);
+    font-size: 20px;
+
+    & .day {
+        display: flex;
+        align-items: top;
+        justify-content: right;
+        padding: 10px;
+        background-color: var(--background);
+        transition: background-color var(--transition-time);
+        border: 4px solid black;
+        border-radius: calc(var(--radius) - 10px);
+        user-select: none;
+        cursor: pointer;
+    }
+
+    & .day:hover {
+        background-color: var(--hover);
+    }
+
+    & .differentmonth {
+        color: #b3b3b3;
+        border-color: #b3b3b3;
+    }
+
+    & .currentday {
+        background-color: color-mix(in srgb, var(--accent) 10%, white);
+        color: var(--accent);
+    }
+
+    & .currentday:hover {
+        background-color: color-mix(in srgb, var(--accent) 25%, white);
+    }
+}
+
+/* Diagram Selector */
 area {
     cursor: pointer;
 }
@@ -19,7 +205,7 @@ area {
     /*border: 2px solid gold;*/
 }
 
-#selector {
+#diagram #selector {
     display: block;
     position: absolute;
     pointer-events: none;

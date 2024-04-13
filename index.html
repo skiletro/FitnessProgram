@@ -7,46 +7,77 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
-    <span>Location: <span id="bodyLocation">none</span></span>
-    <div id="diagram">
-        <div id="selector"></div>
-        <img id="diagramImage" src="assets/diagrams/unannotated.svg" width="480em" usemap="#image-map">
-        <map name="image-map">
-            <area onclick="Open('neck')" coords="527,165,574,166,583,189,596,204,576,218,524,218,507,203,523,186" shape="poly">
-            <area onclick="Open('shoulders')" coords="131,231,181,210,204,200,279,199,335,221,354,233,329,251,285,235,267,202,215,202,199,233,161,251" shape="poly">
-            <area onclick="Open('shoulders')" coords="443,229,481,215,505,204,523,220,577,218,597,204,637,217,661,230,642,247,614,245,586,220,516,223,491,246,458,246" shape="poly">
-            <area onclick="Open('lats')" coords="519,223,586,222,602,241,551,325,499,242" shape="poly">
-            <area onclick="Open('chest')" coords="210,219,274,219,280,235,325,253,318,270,321,305,296,383,181,383,163,308,166,270,166,255,202,234,204,224" shape="poly">
-            <area onclick="Open('abdominals')" coords="179,385,304,386,329,540,152,543" shape="poly">
-            <area onclick="Open('biceps')" coords="131,234,162,255,157,309,159,344,150,385,118,378,121,306" shape="poly">
-            <area onclick="Open('biceps')" coords="326,252,353,236,363,297,367,370,366,378,334,385,325,342,331,306,321,272" shape="poly">
-            <area onclick="Open('triceps')" coords="441,234,466,252,475,264,467,297,471,341,463,384,428,381,431,321,433,270" shape="poly">
-            <area onclick="Open('triceps')" coords="628,254,661,234,668,274,672,324,672,360,676,372,643,387,637,363,633,332,638,306,626,268" shape="poly">
-            <area onclick="Open('forearms')" coords="116,379,152,387,142,464,133,529,113,529,103,471" shape="poly">
-            <area onclick="Open('forearms')" coords="334,388,368,381,378,439,378,487,373,529,351,526,340,450" shape="poly">
-            <area onclick="Open('middle back')" coords="496,244,550,328,603,240,625,254,632,305,594,389,549,334,509,389,469,303,479,250" shape="poly">
-            <area onclick="Open('lats')" coords="485,386,529,391,550,439,573,389,619,391,621,429,637,500,625,512,577,500,551,454,517,507,478,514,466,487,482,423" shape="poly">
-            <area onclick="Open('lower back')" coords="550,460,528,502,495,522,513,539,549,532,586,541,605,523,575,502" shape="poly">
-            <area onclick="Open('glutes')" coords="466,533,499,534,519,543,550,534,585,543,601,531,634,532,640,562,617,584,563,588,550,581,535,589,486,583,460,562" shape="poly">
-            <area onclick="Open('hamstrings')" coords="478,586,529,591,542,615,539,655,539,702,528,733,496,736,479,711,468,652,468,611" shape="poly">
-            <area onclick="Open('hamstrings')" coords="563,603,590,588,617,588,635,625,631,669,619,723,598,737,574,731,561,708,562,653" shape="poly">
-            <area onclick="Open('calves')" coords="496,752,541,762,541,823,541,886,531,910,502,906,487,867,487,808" shape="poly">
-            <area onclick="Open('calves')" coords="562,762,607,754,611,795,613,844,607,888,600,908,563,908,559,857,556,782" shape="poly">
-            <area onclick="Open('abductors')" coords="160,556,163,614,172,664,183,725,172,724,154,646,145,588,146,558" shape="poly">
-            <area onclick="Open('abductors')" coords="327,552,335,552,334,618,323,679,313,723,304,713,317,656,325,598" shape="poly">
-            <area onclick="Open('adductors')" coords="225,558,236,559,236,618,234,660,233,711,235,723,218,721,223,657,226,593" shape="poly">
-            <area onclick="Open('adductors')" coords="248,558,258,558,261,612,264,652,266,697,265,724,250,723,254,678,247,636,254,597" shape="poly">
-            <area onclick="Open('quadriceps')" coords="160,543,225,543,220,673,220,748,187,744,167,629" shape="poly">
-            <area onclick="Open('quadriceps')" coords="260,541,322,541,324,581,310,665,299,746,265,746,263,655,259,577" shape="poly">
-        </map>
+    <div id="nav">
+        <div id="logo">Fitness<span class="accent">App</span></div>
+        <div id="items">
+            <ul>
+                <li>About</li>
+            </ul>
+            <button id="add" onclick="OpenDiagramPopup()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
     </div>
-    <label for="toggleAnnotations">
-        <input type="checkbox" id="toggleAnnotations" name="toggleAnnotations" checked>
-        Toggle Annotations
-    </label>
-    <span>Exercises: <span id="exercises">none</span></span>
-
-    <script src="assets/scripts/imageMapResizer.min.js"></script>
-    <script src="assets/scripts/main.js"></script>
+    <div id="main">
+        <div id="information">
+            <div class="currentdayname">Friday</div>
+            <div class="currentdaywritten">12th April 2024</div>
+            <div class="title">What do I need to do today?</div>
+            <div class="subtitle">Focusing on <span>Chest and Abdominals</span> today...</div>
+            <div>
+                pluh pluh
+            </div>
+        </div>
+        <div id="calendar">
+            <div class="header">
+                <div class="date">
+                    <span class="month">April</span>
+                    <span class="year">2024</span>
+                </div>
+                <div class="switcher">
+                    <button class="left"><i class="fa-solid fa-arrow-left"></i></button><button class="today">Today</button><button class="right"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="days">
+                <div class="day">1st</div>
+                <div class="day">2nd</div>
+                <div class="day">3rd</div>
+                <div class="day">4th</div>
+                <div class="day">5th</div>
+                <div class="day">6th</div>
+                <div class="day">7th</div>
+                <div class="day">8th</div>
+                <div class="day">9th</div>
+                <div class="day">10th</div>
+                <div class="day">11th</div>
+                <div class="day currentday">12th</div>
+                <div class="day">13th</div>
+                <div class="day">14th</div>
+                <div class="day">15th</div>
+                <div class="day">16th</div>
+                <div class="day">17th</div>
+                <div class="day">18th</div>
+                <div class="day">19th</div>
+                <div class="day">20th</div>
+                <div class="day">21st</div>
+                <div class="day">22nd</div>
+                <div class="day">23rd</div>
+                <div class="day">24th</div>
+                <div class="day">25th</div>
+                <div class="day">26th</div>
+                <div class="day">27th</div>
+                <div class="day">28th</div>
+                <div class="day">29th</div>
+                <div class="day">30th</div>
+                <div class="day differentmonth">1st</div>
+                <div class="day differentmonth">2nd</div>
+                <div class="day differentmonth">3rd</div>
+                <div class="day differentmonth">4th</div>
+                <div class="day differentmonth">5th</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/02439252d4.js" crossorigin="anonymous"></script>
+    <script src="assets/scripts/mainApp.js"></script>
 </body>
 </html>
