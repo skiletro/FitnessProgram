@@ -109,7 +109,7 @@ body {
     /*border: 4px solid black;
     border-radius: var(--radius);*/
     width: 1400px;
-    height: 700px;
+    height: 800px;
 }
 
 #calendar .header {
@@ -139,16 +139,16 @@ body {
             border: 4px solid black;
             padding: 0px 10px;
             cursor: pointer;
+
+            &:hover {
+                background-color: var(--hover);
+            }
         }
         
         & .left {
             border-right: 0;
             border-top-left-radius: var(--radius);
             border-bottom-left-radius: var(--radius);
-        }
-
-        & button:hover {
-            background-color: var(--hover);
         }
 
         & .right {
@@ -207,10 +207,10 @@ body {
     & .currentday {
         background-color: color-mix(in srgb, var(--accent) 10%, white);
         color: var(--accent);
-    }
 
-    & .currentday:hover {
-        background-color: color-mix(in srgb, var(--accent) 25%, white);
+        &:hover {
+            background-color: color-mix(in srgb, var(--accent) 25%, white);
+        }
     }
 }
 
