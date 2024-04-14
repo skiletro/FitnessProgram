@@ -1,12 +1,15 @@
-const getWrittenDate = (date) => {
-    let day = date.getDate();
-    let monthIndex = date.getMonth();
-    let year = date.getFullYear();
-    let suffix = (day === 1 || day === 21 || day === 31) ? 'st' :
+const getDaySuffix = (day) => {
+    return day = (day === 1 || day === 21 || day === 31) ? 'st' :
                    (day === 2 || day === 22) ? 'nd' :
                    (day === 3 || day === 23) ? 'rd' : 'th';
+};
+
+const getWrittenDate = (date) => {
+    let day = date.getDate();
+    let suffix = getDaySuffix(day);
+    let monthIndex = date.getMonth();
+    let year = date.getFullYear();
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    
     return `${day}${suffix} ${months[monthIndex]} ${year}`;
 };
 
@@ -61,8 +64,13 @@ const createCalendarElements = (daysOfTheMonth) => {
         let dayElement = document.createElement("div");
 
         if (element.toString() != new Date(0).toString()) { // Converting to string bc javascript is fucking stupid
-            dayElement.textContent = element.getDate();
+            dayElement.textContent = element.getDate() + getDaySuffix(element.getDate());
             dayElement.classList.add('day');
+            dayElement.dataset.day = element.getDate();
+            dayElement.dataset.date = element;
+            dayElement.addEventListener('click', () => {
+                changeDay(dayElement);
+            });
         } else {
             dayElement.textContent = "0";
             dayElement.classList.add('empty');
@@ -74,6 +82,17 @@ const createCalendarElements = (daysOfTheMonth) => {
 
         daysContainer.appendChild(dayElement);
     });
+};
+
+const updateCalendarElements = (date) => {
+    clearAllCalendarElements();
+    createCalendarElements(generateCalendarArray(date));
+    updateText();
+};
+
+const changeDay = (element) => {
+    now.setDate(element.dataset.day);
+    updateCalendarElements(now);
 };
 
 const updateText = () => {
@@ -90,23 +109,18 @@ now.setHours(0,0,0,0); // Very important otherwise some comparisons fail
 
 const PreviousMonth = () => {
     now.setMonth(now.getMonth() - 1);
-    clearAllCalendarElements();
-    createCalendarElements(generateCalendarArray(now));
-    updateText();
+    updateCalendarElements(now);
 };
 
 const NextMonth = () => {
     now.setMonth(now.getMonth() + 1);
-    clearAllCalendarElements();
-    createCalendarElements(generateCalendarArray(now));
-    updateText();
+    updateCalendarElements(now);
 };
 
 const GoBackToToday = () => {
     now = new Date();
-    clearAllCalendarElements();
-    createCalendarElements(generateCalendarArray(now));
-    updateText();
+    now.setHours(0,0,0,0);
+    updateCalendarElements(now);
 };
 
 document.addEventListener("DOMContentLoaded", () => {

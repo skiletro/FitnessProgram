@@ -5,7 +5,6 @@ A fitness program written for a final year undergraduate Computer Science degree
 In order of what needs doing...
 
 - [ ] Comment code more
-- [ ] Make each individual day clickable to change day
 - [ ] Add exercise popup which displays diagram
 - [ ] Make site mobile friendly / more responsive
 - [ ] Finish nav banner
