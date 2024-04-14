@@ -78,13 +78,17 @@ body {
     width: 380px;
     padding: 10px;
 
-    & .currentdayname {
+    & #informationDayName {
         font-size: 40px;
         font-weight: bold;
     }
 
-    & .currentdaywritten {
+    & #informationDate {
         font-size: 40px;
+    }
+
+    & #informationExerciseNames {
+        color: var(--accent);
     }
 
     & .title {
@@ -154,7 +158,18 @@ body {
     }
 }
 
-#calendar .days {
+#calendar .dayTitles {
+    display: grid;;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+
+    & .title {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+#calendar #days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 10px;
@@ -162,7 +177,7 @@ body {
     background-color: var(--background);
     font-size: 20px;
 
-    & .day {
+    & > * {
         display: flex;
         align-items: top;
         justify-content: right;
@@ -171,17 +186,21 @@ body {
         transition: background-color var(--transition-time);
         border: 4px solid black;
         border-radius: calc(var(--radius) - 10px);
-        user-select: none;
         cursor: pointer;
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    & .empty {
+        color: rgba(0,0,0,0);
+        opacity: 0.2;
+        text-shadow: none;
+        user-select: none;
+        pointer-events: none;
     }
 
     & .day:hover {
         background-color: var(--hover);
-    }
-
-    & .differentmonth {
-        color: #b3b3b3;
-        border-color: #b3b3b3;
     }
 
     & .currentday {

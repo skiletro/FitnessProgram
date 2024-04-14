@@ -20,10 +20,10 @@
     </div>
     <div id="main">
         <div id="information">
-            <div class="currentdayname">Friday</div>
-            <div class="currentdaywritten">12th April 2024</div>
+            <div id="informationDayName">Monday</div>
+            <div id="informationDate">1st January 1970</div>
             <div class="title">What do I need to do today?</div>
-            <div class="subtitle">Focusing on <span>Chest and Abdominals</span> today...</div>
+            <div class="subtitle">Focusing on <span id="informationExerciseNames">nothing</span> today...</div>
             <div>
                 pluh pluh
             </div>
@@ -31,50 +31,23 @@
         <div id="calendar">
             <div class="header">
                 <div class="date">
-                    <span class="month">April</span>
-                    <span class="year">2024</span>
+                    <span id="calendarMonth" class="month">January</span>
+                    <span id="calendarYear" class="year">1970</span>
                 </div>
                 <div class="switcher">
-                    <button class="left"><i class="fa-solid fa-arrow-left"></i></button><button class="today">Today</button><button class="right"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="PreviousMonth()" class="left"><i class="fa-solid fa-arrow-left"></i></button><button onclick="GoBackToToday()" class="today">Today</button><button onclick="NextMonth()" class="right"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
-            <div class="days">
-                <div class="day">1st</div>
-                <div class="day">2nd</div>
-                <div class="day">3rd</div>
-                <div class="day">4th</div>
-                <div class="day">5th</div>
-                <div class="day">6th</div>
-                <div class="day">7th</div>
-                <div class="day">8th</div>
-                <div class="day">9th</div>
-                <div class="day">10th</div>
-                <div class="day">11th</div>
-                <div class="day currentday">12th</div>
-                <div class="day">13th</div>
-                <div class="day">14th</div>
-                <div class="day">15th</div>
-                <div class="day">16th</div>
-                <div class="day">17th</div>
-                <div class="day">18th</div>
-                <div class="day">19th</div>
-                <div class="day">20th</div>
-                <div class="day">21st</div>
-                <div class="day">22nd</div>
-                <div class="day">23rd</div>
-                <div class="day">24th</div>
-                <div class="day">25th</div>
-                <div class="day">26th</div>
-                <div class="day">27th</div>
-                <div class="day">28th</div>
-                <div class="day">29th</div>
-                <div class="day">30th</div>
-                <div class="day differentmonth">1st</div>
-                <div class="day differentmonth">2nd</div>
-                <div class="day differentmonth">3rd</div>
-                <div class="day differentmonth">4th</div>
-                <div class="day differentmonth">5th</div>
+            <div class="dayTitles">
+                <div class="title">Mon</div>
+                <div class="title">Tue</div>
+                <div class="title">Wed</div>
+                <div class="title">Thu</div>
+                <div class="title">Fri</div>
+                <div class="title">Sat</div>
+                <div class="title">Sun</div>
             </div>
+            <div id="days"></div>
         </div>
     </div>
     <script src="https://kit.fontawesome.com/02439252d4.js" crossorigin="anonymous"></script>
