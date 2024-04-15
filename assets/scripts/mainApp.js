@@ -1,10 +1,10 @@
-const getDaySuffix = (day) => {
+function getDaySuffix(day) {
     return day = (day === 1 || day === 21 || day === 31) ? 'st' :
                    (day === 2 || day === 22) ? 'nd' :
                    (day === 3 || day === 23) ? 'rd' : 'th';
 };
 
-const getWrittenDate = (date) => {
+function getWrittenDate(date) {
     let day = date.getDate();
     let suffix = getDaySuffix(day);
     let monthIndex = date.getMonth();
@@ -13,11 +13,11 @@ const getWrittenDate = (date) => {
     return `${day}${suffix} ${months[monthIndex]} ${year}`;
 };
 
-const getFirstDayOfMonth = (date) => {
+function getFirstDayOfMonth(date) {
     return new Date(date.getFullYear(), date.getMonth(), 1)
 };
 
-const getStartingIndexOffset = (date) => {
+function getStartingIndexOffset(date) {
     let rawIndex = getFirstDayOfMonth(date).getDay(); // 0 sunday, 1 monday, etc etc
     if (rawIndex == 0) {
         return 6;
@@ -26,7 +26,7 @@ const getStartingIndexOffset = (date) => {
     }
 };
 
-const generateCalendarArray = (date) => {
+function generateCalendarArray(date) {
     let daysOfTheMonth = [];
     let tempDate = getFirstDayOfMonth(date);
     let currentMonth = tempDate.getMonth();
@@ -51,21 +51,20 @@ const generateCalendarArray = (date) => {
     return daysOfTheMonth;
 }
 
-const clearAllCalendarElements = () => {
+function clearAllCalendarElements() {
     let daysContainer = document.getElementById("days");
     while (daysContainer.lastElementChild) {
         daysContainer.removeChild(daysContainer.lastElementChild);
     }
 };
 
-const createCalendarElements = (daysOfTheMonth) => {
+function createCalendarElements(daysOfTheMonth) {
     let daysContainer = document.getElementById("days");
     daysOfTheMonth.forEach(element => {
         let dayElement = document.createElement("div");
 
         if (element.toString() != new Date(0).toString()) { // Converting to string bc javascript is fucking stupid
             dayElement.textContent = element.getDate() + getDaySuffix(element.getDate());
-            dayElement.classList.add('day');
             dayElement.dataset.day = element.getDate();
             dayElement.dataset.date = element;
             dayElement.addEventListener('click', () => {
@@ -84,18 +83,18 @@ const createCalendarElements = (daysOfTheMonth) => {
     });
 };
 
-const updateCalendarElements = (date) => {
+function updateCalendarElements(date) {
     clearAllCalendarElements();
     createCalendarElements(generateCalendarArray(date));
     updateText();
 };
 
-const changeDay = (element) => {
+function changeDay(element) {
     now.setDate(element.dataset.day);
     updateCalendarElements(now);
 };
 
-const updateText = () => {
+function updateText() {
     document.getElementById("calendarMonth").innerText = now.toLocaleString('default', { month: 'long' });
     document.getElementById("calendarYear").innerText = now.getFullYear();
 
@@ -107,17 +106,17 @@ let now = new Date();
 now.setHours(0,0,0,0); // Very important otherwise some comparisons fail
 //now.setDate(now.getDate() + 169);
 
-const PreviousMonth = () => {
+function PreviousMonth() {
     now.setMonth(now.getMonth() - 1);
     updateCalendarElements(now);
 };
 
-const NextMonth = () => {
+function NextMonth() {
     now.setMonth(now.getMonth() + 1);
     updateCalendarElements(now);
 };
 
-const GoBackToToday = () => {
+function GoBackToToday() {
     now = new Date();
     now.setHours(0,0,0,0);
     updateCalendarElements(now);

@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
+    <button id="add" onclick="OpenDiagramPopup()">
+        <i class="fa-solid fa-plus"></i>
+    </button>
     <div id="nav">
         <div id="logo">Fitness<span class="accent">Program</span></div>
         <div id="items">
             <ul>
                 <li>About</li>
+                <li>Add</li>
             </ul>
-            <button id="add" onclick="OpenDiagramPopup()">
-                <i class="fa-solid fa-plus"></i>
-            </button>
         </div>
     </div>
     <div id="main">
@@ -35,7 +36,15 @@
                     <span id="calendarYear" class="year">1970</span>
                 </div>
                 <div class="switcher">
-                    <button onclick="PreviousMonth()" class="left"><i class="fa-solid fa-arrow-left"></i></button><button onclick="GoBackToToday()" class="today">Today</button><button onclick="NextMonth()" class="right"><i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="PreviousMonth()" class="left">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button onclick="GoBackToToday()" class="today">
+                        Today
+                    </button>
+                    <button onclick="NextMonth()" class="right">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
             <div class="dayTitles">

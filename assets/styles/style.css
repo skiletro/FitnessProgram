@@ -1,17 +1,22 @@
 :root {
+    --scaling: 1;
     --background: #ffffff;
     --hover: #e2e2e2;
     --accent: #ab4aff;
-    --radius: 20px;
+    --border: 0.25rem solid black;
+    --radius: calc(20px * var(--scaling));
+    --shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.1);
     --transition-time: 250ms;
+    
+    font-size: calc(16px * var(--scaling));
+    font-family: 'Bahnschrift', sans-serif;
+    text-shadow: var(--shadow);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Bahnschrift', sans-serif;
-    text-shadow: 0px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
 /* General */
@@ -25,19 +30,43 @@ body {
     height: 100vh;
 }
 
+#add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: var(--accent);
+    color: white;
+    transition: background-color 250ms;
+    border: 0;
+    border-radius: 100%;
+    --radius: 2rem;
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+    font-size: calc(var(--radius) * 1);
+    box-shadow: var(--shadow);
+
+    &:hover {
+        background-color: color-mix(in srgb, black 10%, var(--accent));
+        cursor: pointer;
+    }
+}
+
 #nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 35px;
-    margin: 10px; /* temp */
-    border: 4px solid black;
+    padding: 0 2rem;
+    margin: 0.5rem; /* temp */
+    border: var(--border);
     border-radius: var(--radius);
     width: 95%;
-    height: 80px;
+    height: 5rem;
 
     & #logo {
-        font-size: 40px;
+        font-size: 2.5rem;
 
         & .accent {
             font-weight: bold;
@@ -48,20 +77,14 @@ body {
     & #items {
         display: flex;
         flex-direction: row;
+        align-items: center;
 
-        & #add {
-            background-color: var(--accent);
-            color: white;
-            transition: background-color 250ms;
-            border: 0;
-            border-radius: 9999px;
-            width: 55px;
-            height: 55px;
-            font-size: 20px;
+        & ul {
+            list-style-type: none;
 
-            &:hover {
-                background-color: color-mix(in srgb, black 10%, var(--accent));
-                cursor: pointer;
+            & li {
+                display: inline;
+                font-size: 1.5rem;
             }
         }
     }
@@ -69,22 +92,24 @@ body {
 
 #main {
     display: flex;
-    border: 4px solid black;
+    border: var(--border);
     border-radius: var(--radius);
-    padding: 10px;
+    padding: 0.5rem;
+    min-width: 100rem;
+    height: 50rem;
 }
 
 #information {
-    width: 380px;
-    padding: 10px;
+    min-width: 23rem;
+    padding: 0.5rem;
 
     & #informationDayName {
-        font-size: 40px;
+        font-size: 2.5rem;
         font-weight: bold;
     }
 
     & #informationDate {
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 
     & #informationExerciseNames {
@@ -92,12 +117,12 @@ body {
     }
 
     & .title {
-        font-size: 24px;
+        font-size: 1.5rem;
         color: rgb(136, 136, 136);
     }
 
     & .subtitle {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 }
 
@@ -106,22 +131,19 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--background);
-    /*border: 4px solid black;
-    border-radius: var(--radius);*/
-    width: 1400px;
-    height: 800px;
+    width: 100%;
 }
 
 #calendar .header {
     display: flex;
-    height: 45px;
+    height: 3rem;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    padding: 0px 10px 10px 10px;
+    padding: 0 0.5rem 0.5rem 0.5rem;
 
     & .date {
-        font-size: 40px;
+        font-size: 2.5rem;
 
         & .month {
             font-weight: bold;
@@ -129,15 +151,18 @@ body {
     }
 
     & .switcher {
+        display: flex;
         margin: 0;
         & button {
+            display: flex;
+            justify-content: center;
             align-items: center;
-            height: 40px;
-            font-size: 20px;
+            height: 2.5rem;
+            font-size: 1.25rem;
             background-color: var(--background);
             transition: background-color var(--transition-time);
-            border: 4px solid black;
-            padding: 0px 10px;
+            border: var(--border);
+            padding: 0 0.5rem;
             cursor: pointer;
 
             &:hover {
@@ -151,6 +176,10 @@ body {
             border-bottom-left-radius: var(--radius);
         }
 
+        & .today {
+            padding: 0 1rem;
+        }
+
         & .right {
             border-left: 0;
             border-top-right-radius: var(--radius);
@@ -162,10 +191,10 @@ body {
 #calendar .dayTitles {
     display: grid;;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
+    grid-gap: 0.5rem;
 
     & .title {
-        font-size: 20px;
+        font-size: 1.25rem;
         text-align: center;
     }
 }
@@ -173,23 +202,30 @@ body {
 #calendar #days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
+    grid-gap: 0.5rem;
     flex: 1;
     background-color: var(--background);
-    font-size: 20px;
+    font-size: 1.25rem;
 
     & > * {
         display: flex;
         align-items: top;
         justify-content: right;
-        padding: 10px;
+        --padding: 0.5rem;
+        padding: var(--padding);
         background-color: var(--background);
         transition: background-color var(--transition-time);
-        border: 4px solid black;
-        border-radius: calc(var(--radius) - 10px);
+        border: var(--border);
+        border-radius: calc(var(--radius) - var(--padding));
         cursor: pointer;
         opacity: 1;
         pointer-events: all;
+        min-width: 7rem;
+        min-height: 6rem;
+        
+        &:hover {
+            background-color: var(--hover);
+        }
     }
 
     & .empty {
@@ -198,10 +234,6 @@ body {
         text-shadow: none;
         user-select: none;
         pointer-events: none;
-    }
-
-    & .day:hover {
-        background-color: var(--hover);
     }
 
     & .currentday {
@@ -222,7 +254,6 @@ area {
 #diagram {
     position: relative;
     overflow: hidden;
-    /*border: 2px solid gold;*/
 }
 
 #diagram #selector {
@@ -231,9 +262,9 @@ area {
     pointer-events: none;
     top: 50%;
     left: 50%;
-    width: 50px;
-    height: 50px;
-    border-radius: 99999px;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
     background: rgb(255, 95, 95);
     opacity: 0;
     transform: translate(-50%, -50%);
