@@ -8,11 +8,13 @@ document.body.addEventListener('mousemove', (event) => {
 })
 
 // Handle clicking on the diagrams
-const Open = (action) => {
-    document.getElementById("bodyLocation").innerText = action;
+function SelectElement(action) {
+    document.getElementById("diagramExercise").innerText = action;
 
     let selector = document.getElementById("selector");
     let parentDivRect = document.getElementById("diagram").getBoundingClientRect();
+
+    console.log((clientY - parentDivRect.top) + "px" + ", " + (clientX - parentDivRect.left) + "px");
 
     selector.style.opacity = 0.7;
     selector.style.left = (clientX - parentDivRect.left) + "px";
@@ -21,7 +23,7 @@ const Open = (action) => {
     Parse(action);
 }
 
-const Parse = async (action) => {
+async function Parse(action) {
     let response = await fetch('assets/data/exercises.json');
     let json = await response.json();
     let exercises = [];
@@ -32,20 +34,17 @@ const Parse = async (action) => {
         }
     });
 
-    document.getElementById("exercises").innerText = exercises;
+    document.getElementById("diagramExerciseInformation").innerText = exercises;
 }
 
-document.getElementById("toggleAnnotations").addEventListener('change', (event) => {
-    let img = document.getElementById("diagramImage");
-    if (event.target.checked) {
-        img.src = "assets/diagrams/unannotated.svg";
-    } else {
-        img.src = "assets/diagrams/blank.svg";
-    }
-})
+//document.getElementById("toggleAnnotations").addEventListener('change', (event) => {
+//    let img = document.getElementById("diagramImage");
+//    if (event.target.checked) {
+//        img.src = "assets/diagrams/unannotated.svg";
+//    } else {
+//        img.src = "assets/diagrams/blank.svg";
+//    }
+//})
 
 // Disable dragging image
 document.getElementById("diagram").ondragstart = () => { return false; }
-
-// https://github.com/davidjbradshaw/image-map-resizer
-imageMapResize();

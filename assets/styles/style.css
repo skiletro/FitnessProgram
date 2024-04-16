@@ -46,7 +46,9 @@ body {
     width: calc(var(--radius) * 2);
     height: calc(var(--radius) * 2);
     font-size: calc(var(--radius) * 1);
+    text-shadow: var(--shadow);
     box-shadow: var(--shadow);
+    border: var(--border);
 
     &:hover {
         background-color: color-mix(in srgb, black 10%, var(--accent));
@@ -246,27 +248,147 @@ body {
     }
 }
 
+/* Diagram Picker */
+#diagramPicker {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+
+    & .closeButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+        border: 0;
+        border-radius: 100%;
+    }
+
+    & .inner {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        border: var(--border);
+        border-radius: var(--radius);
+        width: fit-content;
+        height: fit-content;
+        background-color: white;
+        padding: 1rem 2rem;
+        box-shadow: var(--shadow);
+
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        & .header {
+            font-size: 2.5rem;
+
+            & .bold { font-weight: bold; }
+        }
+
+        & .content {
+            display: flex;
+            flex-direction: row;
+
+            & #diagram {
+                position: relative;
+                
+                & #diagramImage {
+                    width: 30rem;
+                }
+
+                & #selector {
+                    position: absolute;
+                    pointer-events: none;
+                    width: 3rem;
+                    height: 3rem;
+                    background: rgb(255, 95, 95);
+                    top: 50%;
+                    left: 50%;
+                    border-radius: 100%;
+                    opacity: 0;
+                    transform: translate(-50%, -50%);
+                    transition: 350ms ease;
+                }
+            }
+
+            & #sidebar {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                max-height: auto;
+            }
+
+            & #information {
+                border: var(--border);
+                border-radius: var(--radius);
+                width: 30rem;
+                padding: 1rem;
+
+                & h1 {
+                    font-size: 2rem;
+                    font-weight: normal;
+                }
+
+                & #diagramExercise {
+                    font-weight: bold;
+                }
+
+                & h2 {
+                    font-size: 1rem;
+                    font-weight: normal;
+                }
+
+                & p {
+                    font-size: 1.25rem;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            & #buttons {
+                & button {
+                    border: var(--border);
+                    border-radius: var(--radius);
+                    font-size: 1.5rem;
+                    padding: 0.5rem 1rem;
+                    text-shadow: var(--shadow);
+                    box-shadow: var(--shadow);
+                    cursor: pointer;
+                    transition: var(--transition-time) background-color;
+                }
+
+                & .primary {
+                    background-color: var(--accent);
+                    color: white;
+
+                    &:hover {
+                        background-color: color-mix(in srgb, black 20%, var(--accent));
+                    }
+                }
+
+                & .secondary {
+                    background-color: white;
+                    color: black;
+
+                    &:hover {
+                        background-color: color-mix(in srgb, black 10%, white);
+                    }
+                }
+            }
+        }
+    }
+}
+
 /* Diagram Selector */
 area {
     cursor: pointer;
-}
-
-#diagram {
-    position: relative;
-    overflow: hidden;
-}
-
-#diagram #selector {
-    display: block;
-    position: absolute;
-    pointer-events: none;
-    top: 50%;
-    left: 50%;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 100%;
-    background: rgb(255, 95, 95);
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    transition: 350ms ease;
 }

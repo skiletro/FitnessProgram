@@ -126,3 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
     createCalendarElements(generateCalendarArray(now));
     updateText();
 });
+
+function OpenDiagramPopup() {
+    document.getElementById("diagramPicker").open = true;
+}
+
+function CloseDiagramPopup() {
+    document.getElementById("diagramPicker").open = false;
+}
