@@ -25,7 +25,7 @@ export function SelectBodypart(action) {
 }
 
 async function ParseExerciseDataset(action) {
-    let response = await fetch('assets/data/exercises.json');
+    let response = await fetch('assets/data/free-exercise-db/dist/exercises.json');
     let json = await response.json();
     let exercises = [];
 
