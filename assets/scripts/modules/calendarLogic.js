@@ -26,9 +26,10 @@ function getStartingIndexOffset(date) {
     }
 };
 
-function generateCalendarArray(date) {
+export function generateCalendarArray(date) {
+    let day = new Date(date);
     let daysOfTheMonth = [];
-    let tempDate = getFirstDayOfMonth(date);
+    let tempDate = getFirstDayOfMonth(day);
     let currentMonth = tempDate.getMonth();
     
     // Add all of the dates for the current month into an array
@@ -38,7 +39,7 @@ function generateCalendarArray(date) {
     }
 
     // Append discardable dates to the front of the array
-    for (let index = 0; index < getStartingIndexOffset(now); index++) {
+    for (let index = 0; index < getStartingIndexOffset(day); index++) {
         daysOfTheMonth.splice(0, 0, new Date(0));
     }
 
@@ -51,14 +52,16 @@ function generateCalendarArray(date) {
     return daysOfTheMonth;
 }
 
-function clearAllCalendarElements() {
+export function clearAllCalendarElements() {
     let daysContainer = document.getElementById("days");
     while (daysContainer.lastElementChild) {
         daysContainer.removeChild(daysContainer.lastElementChild);
     }
 };
 
-function createCalendarElements(daysOfTheMonth) {
+export function createCalendarElements(date) {
+    let daysOfTheMonth = generateCalendarArray(new Date(date));
+
     let daysContainer = document.getElementById("days");
     daysOfTheMonth.forEach(element => {
         let dayElement = document.createElement("div");
@@ -67,15 +70,13 @@ function createCalendarElements(daysOfTheMonth) {
             dayElement.textContent = element.getDate() + getDaySuffix(element.getDate());
             dayElement.dataset.day = element.getDate();
             dayElement.dataset.date = element;
-            dayElement.addEventListener('click', () => {
-                changeDay(dayElement);
-            });
+            dayElement.classList.add('populated');
         } else {
             dayElement.textContent = "0";
             dayElement.classList.add('empty');
         }
 
-        if (element.toString() == now.toString()) { // same here
+        if (element.toString() == date.toString()) { // same here
             dayElement.classList.add('currentday');
         }
 
@@ -83,54 +84,16 @@ function createCalendarElements(daysOfTheMonth) {
     });
 };
 
-function updateCalendarElements(date) {
-    clearAllCalendarElements();
-    createCalendarElements(generateCalendarArray(date));
-    updateText();
-};
-
 function changeDay(element) {
     now.setDate(element.dataset.day);
     updateCalendarElements(now);
 };
 
-function updateText() {
-    document.getElementById("calendarMonth").innerText = now.toLocaleString('default', { month: 'long' });
-    document.getElementById("calendarYear").innerText = now.getFullYear();
+export function updateText(date) {
+    let day = new Date(date);
+    document.getElementById("calendarMonth").innerText = day.toLocaleString('default', { month: 'long' });
+    document.getElementById("calendarYear").innerText = day.getFullYear();
 
-    document.getElementById("informationDayName").innerText = now.toLocaleString('default', { weekday: "long"})
-    document.getElementById("informationDate").innerText = getWrittenDate(now);
+    document.getElementById("informationDayName").innerText = day.toLocaleString('default', { weekday: "long"})
+    document.getElementById("informationDate").innerText = getWrittenDate(day);
 };
-
-let now = new Date();
-now.setHours(0,0,0,0); // Very important otherwise some comparisons fail
-//now.setDate(now.getDate() + 169);
-
-function PreviousMonth() {
-    now.setMonth(now.getMonth() - 1);
-    updateCalendarElements(now);
-};
-
-function NextMonth() {
-    now.setMonth(now.getMonth() + 1);
-    updateCalendarElements(now);
-};
-
-function GoBackToToday() {
-    now = new Date();
-    now.setHours(0,0,0,0);
-    updateCalendarElements(now);
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-    createCalendarElements(generateCalendarArray(now));
-    updateText();
-});
-
-function OpenDiagramPopup() {
-    document.getElementById("diagramPicker").open = true;
-}
-
-function CloseDiagramPopup() {
-    document.getElementById("diagramPicker").open = false;
-}

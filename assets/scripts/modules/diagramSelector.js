@@ -8,22 +8,23 @@ document.body.addEventListener('mousemove', (event) => {
 })
 
 // Handle clicking on the diagrams
-function SelectElement(action) {
-    document.getElementById("diagramExercise").innerText = action;
+export function SelectBodypart(action) {
+    let exerciseLabels = document.getElementsByClassName("diagramExercise");
+    for (let index = 0; index < exerciseLabels.length; index++) {
+        exerciseLabels[index].innerText = action;
+    }
 
     let selector = document.getElementById("selector");
     let parentDivRect = document.getElementById("diagram").getBoundingClientRect();
-
-    console.log((clientY - parentDivRect.top) + "px" + ", " + (clientX - parentDivRect.left) + "px");
 
     selector.style.opacity = 0.7;
     selector.style.left = (clientX - parentDivRect.left) + "px";
     selector.style.top = (clientY - parentDivRect.top) + "px";
 
-    Parse(action);
+    ParseExerciseDataset(action);
 }
 
-async function Parse(action) {
+async function ParseExerciseDataset(action) {
     let response = await fetch('assets/data/exercises.json');
     let json = await response.json();
     let exercises = [];

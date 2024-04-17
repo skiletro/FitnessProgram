@@ -30,7 +30,7 @@ body {
     height: 100vh;
 }
 
-#add {
+#addButton {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,7 +211,6 @@ body {
 
     & > * {
         display: flex;
-        align-items: top;
         justify-content: right;
         --padding: 0.5rem;
         padding: var(--padding);
@@ -227,6 +226,10 @@ body {
         
         &:hover {
             background-color: var(--hover);
+        }
+
+        & > * {
+            pointer-events: none; 
         }
     }
 
@@ -339,7 +342,7 @@ body {
                     font-weight: normal;
                 }
 
-                & #diagramExercise {
+                & .diagramExercise {
                     font-weight: bold;
                 }
 
