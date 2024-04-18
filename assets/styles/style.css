@@ -277,8 +277,16 @@ dialog {
         width: 2rem;
         height: 2rem;
         font-size: 1rem;
-        border: 0;
+        background-color: white;
+        border: var(--border);
         border-radius: 100%;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: background-color var(--transition-time);
+
+        &:hover {
+            background-color: var(--hover);
+        }
 
         & > * {
             pointer-events: none;
@@ -376,6 +384,7 @@ dialog {
 
             & p {
                 font-size: 1.25rem;
+                white-space: pre-line;
             }
         }
     }
@@ -384,6 +393,10 @@ dialog {
 #diagramPicker .content {
     & #diagram {
         position: relative;
+        
+        & area {
+            cursor: pointer;
+        }
         
         & #diagramImage {
             width: 30rem;
@@ -469,6 +482,7 @@ dialog {
         border-radius: calc(var(--radius) / 2);
         font-size: 1rem;
         padding: 0.25rem;
+        box-shadow: var(--shadow);
 
         &::before {
             display: inline;
@@ -478,6 +492,13 @@ dialog {
             padding: 0.5rem;
             margin-right: 0.5rem;
             margin-left: -0.25rem;
+            border-right: var(--border);
+        }
+
+        &::after {
+            /* Bit of a stupid hack to get the padding right, but it works :) */
+            content: ".";
+            opacity:0;
         }
     }
 
@@ -485,9 +506,4 @@ dialog {
     & .green { background-color: #dbbcff; }
     & .blue { background-color: #d5ffbc; }
     & .yellow { background-color: #ffeabc; }
-}
-
-/* Diagram Selector */
-area {
-    cursor: pointer;
-}
+}   

@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         exerciseLabel.onclick = () => {
             document.getElementById("exerciseViewer").getElementsByClassName("main")[0].style.opacity = 1;
             document.getElementById("exerciseViewerTitle").innerText = element.name;
-            document.getElementById("exerciseViewerDescription").innerText = element.instructions;
+            document.getElementById("exerciseViewerDescription").innerText = element.instructions.join("\n");
             let imgDir = "assets/data/free-exercise-db/exercises/";
             document.getElementById("exerciseViewerImage1").src = imgDir + element.images[0];
             document.getElementById("exerciseViewerImage2").src = imgDir + element.images[1];
@@ -99,7 +99,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 tags.removeChild(tags.lastElementChild);
             }
             tags.appendChild(createTag("Level", element.level, "red"));
-            tags.appendChild(createTag("Equipment", element.equipment, "blue"))
+            tags.appendChild(createTag("Equipment", element.equipment, "blue"));
+            tags.appendChild(createTag("Category", element.category, "green"));
 
 
         };
