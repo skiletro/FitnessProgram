@@ -17,12 +17,16 @@
                 </ul>
                 <div class="main">
                     <h1 id="exerciseViewerTitle"></h1>
+                    <div id="exerciseViewerTags" class="tags"></div>
                     <h2>Instructions</h2>
                     <p id="exerciseViewerDescription"></p>
                     <h2>Image</h2>
                     <img id="exerciseViewerImage"/>
                 </div>
             </div>
+            <button class="closeButton" data-parent="exerciseViewer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
     </dialog>
     <dialog id="diagramPicker">
@@ -75,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <button class="closeButton" onclick="CloseDiagramPopup()">
+            <button class="closeButton" data-parent="diagramPicker">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>

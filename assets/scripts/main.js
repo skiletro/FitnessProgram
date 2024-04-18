@@ -49,8 +49,13 @@ document.getElementById("addButton").addEventListener("click", () => {
     imageMapResize();
 });
 
-document.querySelector(".closeButton").addEventListener("click", () => {
-    document.getElementById("diagramPicker").open = false;
+// Make a close button for each dialog
+document.querySelectorAll(".closeButton").forEach(button => {
+    button.addEventListener("click", (event) => {
+        let parent = event.target.dataset.parent;
+        console.log(parent);
+        document.getElementById(parent).open = false;
+    });
 });
 
 // Diagram selector
@@ -61,6 +66,15 @@ document.getElementById("diagram").addEventListener("click", (event) => {
         SelectBodypart(target.dataset.bodypart);
     }
 });
+
+function createTag(name, value, color) {
+    let tag = document.createElement("div");
+    tag.classList.add("tag");
+    tag.classList.add(color);
+    tag.dataset.name = name;
+    tag.innerText = value;
+    return tag;
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
     let sidebar = document.getElementById("exerciseViewer").getElementsByClassName("sidebar")[0];
@@ -77,6 +91,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("exerciseViewerTitle").innerText = element.name;
             document.getElementById("exerciseViewerDescription").innerText = element.instructions;
             document.getElementById("exerciseViewerImage").src = "assets/data/free-exercise-db/exercises/" + element.images[0];
+
+            let tags = document.getElementById("exerciseViewerTags");
+            while (tags.lastElementChild) {
+                tags.removeChild(tags.lastElementChild);
+            }
+            tags.appendChild(createTag("Level", element.level, "red"));
+            tags.appendChild(createTag("Equipment", element.equipment, "blue"))
+
+
         };
         exerciseLabel.style.cursor = "pointer";
 

@@ -279,6 +279,10 @@ dialog {
         font-size: 1rem;
         border: 0;
         border-radius: 100%;
+
+        & > * {
+            pointer-events: none;
+        }
     }
 
     & .inner {
@@ -445,6 +449,36 @@ dialog {
             }
         }
     }
+}
+
+/* Tag */
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    pointer-events: none;
+
+    & .tag {
+        border: var(--border);
+        border-radius: calc(var(--radius) / 2);
+        font-size: 1rem;
+        padding: 0.25rem;
+
+        &::before {
+            display: inline;
+            position: relative;
+            content: attr(data-name);
+            background-color: rgba(0,0,0,0.25);
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            margin-left: -0.25rem;
+        }
+    }
+
+    & .red { background-color: #ebffbc; }
+    & .green { background-color: #dbbcff; }
+    & .blue { background-color: #d5ffbc; }
+    & .yellow { background-color: #ffeabc; }
 }
 
 /* Diagram Selector */
