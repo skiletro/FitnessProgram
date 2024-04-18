@@ -110,7 +110,9 @@ body {
 }
 
 #information {
-    min-width: 23rem;
+    --width: 25rem;
+    min-width: var(--width);
+    max-width: var(--width);
     padding: 0.5rem;
 
     & #informationDayName {
@@ -250,6 +252,7 @@ body {
     }
 
     & .currentday {
+        border-color: color-mix(in oklab, black 60%, var(--accent));
         background-color: color-mix(in srgb, var(--accent) 10%, white);
         color: var(--accent);
 

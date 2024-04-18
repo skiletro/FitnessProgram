@@ -40,7 +40,7 @@ document.getElementById("gotoToday").addEventListener("click", () => {
     updateCalendarElements(selectedDate);
 });
 document.getElementById("gotoNextMonth").addEventListener("click", () => {
-    selectedDate.setMonth(selectedDate.getMonth() - 1);
+    selectedDate.setMonth(selectedDate.getMonth() + 1);
     updateCalendarElements(selectedDate);
 });
 
