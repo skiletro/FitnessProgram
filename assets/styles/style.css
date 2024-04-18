@@ -3,8 +3,8 @@
     --background: #ffffff;
     --hover: #e2e2e2;
     --accent: #ab4aff;
-    --border: 0.25rem solid black;
-    --radius: calc(20px * var(--scaling));
+    --borderStyle: 0.25rem solid black;
+    --borderRadius: calc(20px * var(--scaling));
     --shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.1);
     --transition-time: 250ms;
     
@@ -30,6 +30,10 @@ body {
     height: 100vh;
 }
 
+.bold { font-weight: bold; }
+
+.italic { font-style: italic; }
+
 #addButton {
     display: flex;
     align-items: center;
@@ -42,13 +46,13 @@ body {
     transition: background-color 250ms;
     border: 0;
     border-radius: 100%;
-    --radius: 2rem;
-    width: calc(var(--radius) * 2);
-    height: calc(var(--radius) * 2);
-    font-size: calc(var(--radius) * 1);
+    --borderRadius: 2rem;
+    width: calc(var(--borderRadius) * 2);
+    height: calc(var(--borderRadius) * 2);
+    font-size: calc(var(--borderRadius) * 1);
     text-shadow: var(--shadow);
     box-shadow: var(--shadow);
-    border: var(--border);
+    border: var(--borderStyle);
 
     &:hover {
         background-color: color-mix(in srgb, black 10%, var(--accent));
@@ -62,8 +66,8 @@ body {
     align-items: center;
     padding: 0 2rem;
     margin: 0.5rem; /* temp */
-    border: var(--border);
-    border-radius: var(--radius);
+    border: var(--borderStyle);
+    border-radius: var(--borderRadius);
     width: 95%;
     height: 5rem;
 
@@ -100,13 +104,21 @@ body {
     }
 }
 
+#body {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
 #main {
     display: flex;
-    border: var(--border);
-    border-radius: var(--radius);
+    border: var(--borderStyle);
+    border-radius: var(--borderRadius);
     padding: 0.5rem;
-    min-width: 100rem;
-    min-height: 50rem;
+    width: 100rem;
+    height: 50rem;
 }
 
 #information {
@@ -114,6 +126,7 @@ body {
     min-width: var(--width);
     max-width: var(--width);
     padding: 0.5rem;
+    box-shadow: var(--shadow);
 
     & #informationDayName {
         font-size: 2.5rem;
@@ -156,10 +169,6 @@ body {
 
     & .date {
         font-size: 2.5rem;
-
-        & .month {
-            font-weight: bold;
-        }
     }
 
     & .switcher {
@@ -173,7 +182,7 @@ body {
             font-size: 1.25rem;
             background-color: var(--background);
             transition: background-color var(--transition-time);
-            border: var(--border);
+            border: var(--borderStyle);
             padding: 0 0.5rem;
             cursor: pointer;
 
@@ -182,20 +191,22 @@ body {
             }
         }
         
-        & .left {
-            border-right: 0;
-            border-top-left-radius: var(--radius);
-            border-bottom-left-radius: var(--radius);
+        & #gotoPreviousMonth {
+            border-top-left-radius: var(--borderRadius);
+            border-bottom-left-radius: var(--borderRadius);
+            padding-left: calc(var(--borderRadius) / 2);
         }
 
-        & .today {
+        & #gotoToday {
             padding: 0 1rem;
+            border-left: 0;
+            border-right: 0;
         }
 
-        & .right {
-            border-left: 0;
-            border-top-right-radius: var(--radius);
-            border-bottom-right-radius: var(--radius);
+        & #gotoNextMonth {
+            border-top-right-radius: var(--borderRadius);
+            border-bottom-right-radius: var(--borderRadius);
+            padding-right: calc(var(--borderRadius) / 2);
         }
     }
 }
@@ -226,8 +237,8 @@ body {
         padding: var(--padding);
         background-color: var(--background);
         transition: background-color var(--transition-time);
-        border: var(--border);
-        border-radius: calc(var(--radius) - var(--padding));
+        border: var(--borderStyle);
+        border-radius: calc(var(--borderRadius) - var(--padding));
         cursor: pointer;
         opacity: 1;
         pointer-events: all;
@@ -281,7 +292,7 @@ dialog {
         height: 2rem;
         font-size: 1rem;
         background-color: white;
-        border: var(--border);
+        border: var(--borderStyle);
         border-radius: 100%;
         box-shadow: var(--shadow);
         cursor: pointer;
@@ -300,8 +311,8 @@ dialog {
         display: flex;
         flex-direction: column;
         position: absolute;
-        border: var(--border);
-        border-radius: var(--radius);
+        border: var(--borderStyle);
+        border-radius: var(--borderRadius);
         width: fit-content;
         height: fit-content;
         background-color: white;
@@ -318,8 +329,6 @@ dialog {
     
     & .header {
         font-size: 2.5rem;
-
-        & .bold { font-weight: bold; }
     }
 
     & .content {
@@ -344,8 +353,8 @@ dialog {
             overflow-x: hidden;
             list-style-type: none;
             text-align: center;
-            border: var(--border);
-            border-radius: var(--radius);
+            border: var(--borderStyle);
+            border-radius: var(--borderRadius);
             box-shadow: var(--shadow);
 
             & li {
@@ -355,7 +364,7 @@ dialog {
 
                 &:hover {
                     background-color: var(--hover);
-                    border-radius: calc(var(--radius) / 2);
+                    border-radius: calc(var(--borderRadius) / 2);
                 }
             }
         }
@@ -380,7 +389,7 @@ dialog {
                 & img {
                     display: inline;
                     width: 50%;
-                    border-radius: var(--radius);
+                    border-radius: var(--borderRadius);
                     box-shadow: var(--shadow);
                 }
             }
@@ -425,8 +434,8 @@ dialog {
         max-height: auto;
     }
     & #information {
-        border: var(--border);
-        border-radius: var(--radius);
+        border: var(--borderStyle);
+        border-radius: var(--borderRadius);
         width: 30rem;
         padding: 1rem;
         & h1 {
@@ -447,8 +456,8 @@ dialog {
     }
     & #buttons {
         & button {
-            border: var(--border);
-            border-radius: var(--radius);
+            border: var(--borderStyle);
+            border-radius: var(--borderRadius);
             font-size: 1.5rem;
             padding: 0.5rem 1rem;
             text-shadow: var(--shadow);
@@ -481,11 +490,12 @@ dialog {
     pointer-events: none;
 
     & .tag {
-        border: var(--border);
-        border-radius: calc(var(--radius) / 2);
+        border: var(--borderStyle);
+        border-radius: calc(var(--borderRadius) / 2);
         font-size: 1rem;
         padding: 0.25rem;
         box-shadow: var(--shadow);
+        background-color: color-mix(in oklab, white 40%, var(--accent));
 
         &::before {
             display: inline;
@@ -495,7 +505,7 @@ dialog {
             padding: 0.5rem;
             margin-right: 0.5rem;
             margin-left: -0.25rem;
-            border-right: var(--border);
+            border-right: var(--borderStyle);
         }
 
         &::after {
@@ -504,9 +514,4 @@ dialog {
             opacity:0;
         }
     }
-
-    & .red { background-color: #ebffbc; }
-    & .green { background-color: #dbbcff; }
-    & .blue { background-color: #d5ffbc; }
-    & .yellow { background-color: #ffeabc; }
 }   

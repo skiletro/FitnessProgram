@@ -47,5 +47,14 @@ async function ParseExerciseDataset(action) {
 //    }
 //})
 
+// Diagram selector
+document.getElementById("diagram").addEventListener("click", (event) => {
+    const target = event.target.closest("area");
+
+    if (target) {
+        SelectBodypart(target.dataset.bodypart);
+    }
+});
+
 // Disable dragging image
 document.getElementById("diagram").ondragstart = () => { return false; }

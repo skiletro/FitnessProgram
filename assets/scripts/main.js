@@ -1,5 +1,6 @@
 import { clearAllCalendarElements, createCalendarElements, updateText} from "./modules/calendarLogic.js";
 import { SelectBodypart } from "./modules/diagramSelector.js";
+import "./modules/exerciseViewer.js";
 
 var selectedDate = new Date();
 selectedDate.setHours(0,0,0,0);
@@ -44,71 +45,18 @@ document.getElementById("gotoNextMonth").addEventListener("click", () => {
     updateCalendarElements(selectedDate);
 });
 
-document.getElementById("addButton").addEventListener("click", () => {
+function openDiagramPicker() {
     document.getElementById("diagramPicker").open = true;
     imageMapResize();
-});
+}
+document.getElementById("navAdd").addEventListener("click", openDiagramPicker);
+document.getElementById("addButton").addEventListener("click", openDiagramPicker);
 
-// Make a close button for each dialog
+// Close button logic for every dialog that has a close button element
 document.querySelectorAll(".closeButton").forEach(button => {
     button.addEventListener("click", (event) => {
         let parent = event.target.dataset.parent;
         console.log(parent);
         document.getElementById(parent).open = false;
     });
-});
-
-// Diagram selector
-document.getElementById("diagram").addEventListener("click", (event) => {
-    const target = event.target.closest("area");
-
-    if (target) {
-        SelectBodypart(target.dataset.bodypart);
-    }
-});
-
-function createTag(name, value, color) {
-    let tag = document.createElement("div");
-    tag.classList.add("tag");
-    tag.classList.add(color);
-    tag.dataset.name = name;
-    tag.innerText = value;
-    return tag;
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-    let sidebar = document.getElementById("exerciseViewer").getElementsByClassName("sidebar")[0];
-
-    let response = await fetch('assets/data/free-exercise-db/dist/exercises.json');
-    let json = await response.json();
-    json.forEach(element => {
-        let exerciseLabel = document.createElement("li");
-
-        exerciseLabel.textContent = element.name;
-        exerciseLabel.dataset.exercise = element.name;
-        exerciseLabel.onclick = () => {
-            document.getElementById("exerciseViewer").getElementsByClassName("main")[0].style.opacity = 1;
-            document.getElementById("exerciseViewerTitle").innerText = element.name;
-            document.getElementById("exerciseViewerDescription").innerText = element.instructions.join("\n");
-            let imgDir = "assets/data/free-exercise-db/exercises/";
-            document.getElementById("exerciseViewerImage1").src = imgDir + element.images[0];
-            document.getElementById("exerciseViewerImage2").src = imgDir + element.images[1];
-
-            let tags = document.getElementById("exerciseViewerTags");
-            while (tags.lastElementChild) {
-                tags.removeChild(tags.lastElementChild);
-            }
-            tags.appendChild(createTag("Level", element.level, "red"));
-            tags.appendChild(createTag("Equipment", element.equipment, "blue"));
-            tags.appendChild(createTag("Category", element.category, "green"));
-
-
-        };
-        exerciseLabel.style.cursor = "pointer";
-
-        sidebar.appendChild(exerciseLabel);
-    });
-
-    for (let index = 0; index < 10; index++) {
-    }
 });
