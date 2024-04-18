@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
+    <dialog id="exerciseViewer">
+        <div class="inner">
+            <div class="header">
+                View <span class="bold">Exercises</span>
+            </div>
+            <div class="content">
+                <ul class="sidebar">
+                </ul>
+                <div class="main">
+                    <h1 id="exerciseViewerTitle"></h1>
+                    <h2>Instructions</h2>
+                    <p id="exerciseViewerDescription"></p>
+                    <h2>Image</h2>
+                    <img id="exerciseViewerImage"/>
+                </div>
+            </div>
+        </div>
+    </dialog>
     <dialog id="diagramPicker">
         <div class="inner">
             <div class="header">
@@ -69,9 +87,10 @@
         <div id="logo">Fitness<span class="accent">Program</span></div>
         <div id="items">
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Add</a></li>
-                <li><a href="#">Settings</a></li>
+                <li id="navExercises">Exercises</li>
+                <li id="navAbout">About</li>
+                <li id="navAdd">Add</li>
+                <li id="navSettings">Settings</li>
             </ul>
         </div>
     </div>

@@ -15,6 +15,12 @@ function updateCalendarElements(date) {
     updateText(date);
 }
 
+// Navigation Buttons
+document.getElementById("navExercises").addEventListener("click", () => {
+    document.getElementById("exerciseViewer").open = true;
+});
+
+// Calendar
 document.getElementById("days").addEventListener("click", (event) => {
     const target = event.target.closest(".populated");
 
@@ -53,5 +59,30 @@ document.getElementById("diagram").addEventListener("click", (event) => {
 
     if (target) {
         SelectBodypart(target.dataset.bodypart);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+    let sidebar = document.getElementById("exerciseViewer").getElementsByClassName("sidebar")[0];
+
+    let response = await fetch('assets/data/free-exercise-db/dist/exercises.json');
+    let json = await response.json();
+    json.forEach(element => {
+        let exerciseLabel = document.createElement("li");
+
+        exerciseLabel.textContent = element.name;
+        exerciseLabel.dataset.exercise = element.name;
+        exerciseLabel.onclick = () => {
+            document.getElementById("exerciseViewer").getElementsByClassName("main")[0].style.opacity = 1;
+            document.getElementById("exerciseViewerTitle").innerText = element.name;
+            document.getElementById("exerciseViewerDescription").innerText = element.instructions;
+            document.getElementById("exerciseViewerImage").src = "assets/data/free-exercise-db/exercises/" + element.images[0];
+        };
+        exerciseLabel.style.cursor = "pointer";
+
+        sidebar.appendChild(exerciseLabel);
+    });
+
+    for (let index = 0; index < 10; index++) {
     }
 });

@@ -82,11 +82,19 @@ body {
         align-items: center;
 
         & ul {
+            display: flex;
             list-style-type: none;
+            gap: 0.75rem;
 
             & li {
                 display: inline;
                 font-size: 1.5rem;
+                transition: transform var(--transition-time);
+                
+                &:hover {
+                    cursor: pointer;
+                    transform: translate(0px, -0.2rem);
+                }
             }
         }
     }
@@ -98,7 +106,7 @@ body {
     border-radius: var(--radius);
     padding: 0.5rem;
     min-width: 100rem;
-    height: 50rem;
+    min-height: 50rem;
 }
 
 #information {
@@ -251,8 +259,8 @@ body {
     }
 }
 
-/* Diagram Picker */
-#diagramPicker {
+/* Dialogs */
+dialog {
     z-index: 1;
     width: 100vw;
     height: 100vh;
@@ -291,101 +299,149 @@ body {
         right: 0;
         top: 0;
         bottom: 0;
+    }
+    
+    & .header {
+        font-size: 2.5rem;
 
-        & .header {
-            font-size: 2.5rem;
+        & .bold { font-weight: bold; }
+    }
 
-            & .bold { font-weight: bold; }
+    & .content {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+#exerciseViewer {
+    & .content {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        width: 80rem;
+        height: 50rem;
+
+        & .sidebar {
+            --width: 20rem;
+            min-width: var(--width);
+            max-width: var(--width);
+            overflow-y: scroll;
+            overflow-x: hidden;
+            list-style-type: none;
+            text-align: center;
+            border: var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+
+            & li {
+                font-size: 1.25rem;
+                padding: 0.3rem 0rem;
+                transition: background-color var(--transition-time);
+
+                &:hover {
+                    background-color: var(--hover);
+                    border-radius: calc(var(--radius) / 2);
+                }
+            }
         }
-
-        & .content {
+        
+        & .main {
+            opacity: 0;
+            overflow-y: scroll;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            gap: 0.25rem;
 
-            & #diagram {
-                position: relative;
-                
-                & #diagramImage {
-                    width: 30rem;
-                }
-
-                & #selector {
-                    position: absolute;
-                    pointer-events: none;
-                    width: 3rem;
-                    height: 3rem;
-                    background: rgb(255, 95, 95);
-                    top: 50%;
-                    left: 50%;
-                    border-radius: 100%;
-                    opacity: 0;
-                    transform: translate(-50%, -50%);
-                    transition: 350ms ease;
-                }
+            & h1 {
+                text-align: center;
+                font-size: 1.75rem;
             }
 
-            & #sidebar {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-                max-height: auto;
-            }
-
-            & #information {
-                border: var(--border);
+            & img {
+                display: block;
+                width: 50%;
                 border-radius: var(--radius);
-                width: 30rem;
-                padding: 1rem;
-
-                & h1 {
-                    font-size: 2rem;
-                    font-weight: normal;
-                }
-
-                & .diagramExercise {
-                    font-weight: bold;
-                }
-
-                & h2 {
-                    font-size: 1rem;
-                    font-weight: normal;
-                }
-
-                & p {
-                    font-size: 1.25rem;
-                    text-overflow: ellipsis;
-                }
+                box-shadow: var(--shadow);
             }
 
-            & #buttons {
-                & button {
-                    border: var(--border);
-                    border-radius: var(--radius);
-                    font-size: 1.5rem;
-                    padding: 0.5rem 1rem;
-                    text-shadow: var(--shadow);
-                    box-shadow: var(--shadow);
-                    cursor: pointer;
-                    transition: var(--transition-time) background-color;
-                }
+            & p {
+                font-size: 1.25rem;
+            }
+        }
+    }
+}
 
-                & .primary {
-                    background-color: var(--accent);
-                    color: white;
-
-                    &:hover {
-                        background-color: color-mix(in srgb, black 20%, var(--accent));
-                    }
-                }
-
-                & .secondary {
-                    background-color: white;
-                    color: black;
-
-                    &:hover {
-                        background-color: color-mix(in srgb, black 10%, white);
-                    }
-                }
+#diagramPicker .content {
+    & #diagram {
+        position: relative;
+        
+        & #diagramImage {
+            width: 30rem;
+        }
+        & #selector {
+            position: absolute;
+            pointer-events: none;
+            width: 3rem;
+            height: 3rem;
+            background: rgb(255, 95, 95);
+            top: 50%;
+            left: 50%;
+            border-radius: 100%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: 350ms ease;
+        }
+    }
+    & #sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        max-height: auto;
+    }
+    & #information {
+        border: var(--border);
+        border-radius: var(--radius);
+        width: 30rem;
+        padding: 1rem;
+        & h1 {
+            font-size: 2rem;
+            font-weight: normal;
+        }
+        & .diagramExercise {
+            font-weight: bold;
+        }
+        & h2 {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        & p {
+            font-size: 1.25rem;
+            text-overflow: ellipsis;
+        }
+    }
+    & #buttons {
+        & button {
+            border: var(--border);
+            border-radius: var(--radius);
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            text-shadow: var(--shadow);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition-time) background-color;
+        }
+        & .primary {
+            background-color: var(--accent);
+            color: white;
+            &:hover {
+                background-color: color-mix(in srgb, black 20%, var(--accent));
+            }
+        }
+        & .secondary {
+            background-color: white;
+            color: black;
+            &:hover {
+                background-color: color-mix(in srgb, black 10%, white);
             }
         }
     }
