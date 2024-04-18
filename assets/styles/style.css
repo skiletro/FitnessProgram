@@ -361,11 +361,17 @@ dialog {
                 font-size: 1.75rem;
             }
 
-            & img {
-                display: block;
-                width: 50%;
-                border-radius: var(--radius);
-                box-shadow: var(--shadow);
+            & .exerciseViewerImages {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+
+                & img {
+                    display: inline;
+                    width: 50%;
+                    border-radius: var(--radius);
+                    box-shadow: var(--shadow);
+                }
             }
 
             & p {

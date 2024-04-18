@@ -90,7 +90,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("exerciseViewer").getElementsByClassName("main")[0].style.opacity = 1;
             document.getElementById("exerciseViewerTitle").innerText = element.name;
             document.getElementById("exerciseViewerDescription").innerText = element.instructions;
-            document.getElementById("exerciseViewerImage").src = "assets/data/free-exercise-db/exercises/" + element.images[0];
+            let imgDir = "assets/data/free-exercise-db/exercises/";
+            document.getElementById("exerciseViewerImage1").src = imgDir + element.images[0];
+            document.getElementById("exerciseViewerImage2").src = imgDir + element.images[1];
 
             let tags = document.getElementById("exerciseViewerTags");
             while (tags.lastElementChild) {
