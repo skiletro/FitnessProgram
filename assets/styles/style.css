@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 :root {
     --scaling: 0.9;
     --background: #ffffff;
@@ -9,7 +11,7 @@
     --transition-time: 250ms;
     
     font-size: calc(16px * var(--scaling));
-    font-family: 'Bahnschrift', sans-serif;
+    font-family: 'Rubik', sans-serif;
     text-shadow: var(--shadow);
 }
 
@@ -201,6 +203,7 @@ body {
             padding: 0 1rem;
             border-left: 0;
             border-right: 0;
+            font-family: inherit;
         }
 
         & #gotoNextMonth {
@@ -492,9 +495,10 @@ dialog {
         border: var(--borderStyle);
         border-radius: calc(var(--borderRadius) / 2);
         font-size: 1rem;
-        padding: 0.25rem;
+        padding: 0.3rem;
         box-shadow: var(--shadow);
         background-color: color-mix(in oklab, white 40%, var(--accent));
+        overflow: hidden;
 
         &::before {
             display: inline;
@@ -503,7 +507,7 @@ dialog {
             background-color: rgba(0,0,0,0.25);
             padding: 0.5rem;
             margin-right: 0.5rem;
-            margin-left: -0.25rem;
+            margin-left: -0.3rem;
             border-right: var(--borderStyle);
         }
 
