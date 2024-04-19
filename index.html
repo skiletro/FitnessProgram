@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ExerPlan - Your personalized path to peak fitness</title>
     <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
+    <div id="nav">
+        <div id="logo">Exer<span class="accent">Plan</span></div>
+        <div id="items">
+            <ul>
+                <li id="navExercises">Exercises</li>
+                <li id="navAbout">About</li>
+                <li id="navAdd">Add</li>
+                <li id="navSettings">Settings</li>
+            </ul>
+        </div>
+    </div>
     <dialog id="exerciseViewer">
         <div class="inner">
             <div class="header">
@@ -31,6 +42,19 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
+    </dialog>
+    <dialog id="aboutDialog">
+        <class class="inner">
+            <div class="header">
+                ExerPlan
+            </div>
+            <div class="content">
+                Your personalized path to peak fitness
+            </div>
+            <button class="closeButton" data-parent="aboutDialog">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </class>
     </dialog>
     <dialog id="diagramPicker">
         <div class="inner">
@@ -72,13 +96,13 @@
                 </div>
                 <div id="sidebar">
                     <div id="information">
-                        <h1>You selected <span class="diagramExercise">nothing</span>...</h1>
-                        <h2>Here are some exercises that involve the <span class="diagramExercise">nothing</span>...</h2>
+                        <h1>You selected <span class="diagramExercise bold">nothing</span>...</h1>
+                        <h2>Here are some exercises that involve <span class="diagramExercise bold">nothing</span>...</h2>
                         <p id="diagramExerciseInformation"></p>
                     </div>
                     <div id="buttons">
-                        <button class="secondary">Remove Last Selection</button>
-                        <button class="primary">Submit</button>
+                        <button id="removeBodypart" class="secondary">Remove Last Selection</button>
+                        <button id="submitExercises" class="primary">Submit</button>
                     </div>
                 </div>
             </div>
@@ -87,20 +111,22 @@
             </button>
         </div>
     </dialog>
+    <dialog id="settingsDialog">
+        <div class="inner">
+            <div class="header">
+                Settings
+            </div>
+            <div class="content">
+                Here be some settings in the future...
+            </div>
+            <button class="closeButton" data-parent="settingsDialog">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </dialog>
     <button id="addButton">
         <i class="fa-solid fa-plus"></i>
     </button>
-    <div id="nav">
-        <div id="logo">Fitness<span class="accent">Program</span></div>
-        <div id="items">
-            <ul>
-                <li id="navExercises">Exercises</li>
-                <li id="navAbout">About</li>
-                <li id="navAdd">Add</li>
-                <li id="navSettings">Settings</li>
-            </ul>
-        </div>
-    </div>
     <div id="body">
         <div id="main">
             <div id="information">

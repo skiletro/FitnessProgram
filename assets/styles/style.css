@@ -1,5 +1,5 @@
 :root {
-    --scaling: 1;
+    --scaling: 0.9;
     --background: #ffffff;
     --hover: #e2e2e2;
     --accent: #ab4aff;
@@ -437,13 +437,12 @@ dialog {
         border: var(--borderStyle);
         border-radius: var(--borderRadius);
         width: 30rem;
+        height: 39rem;
         padding: 1rem;
+        overflow-y: scroll;
         & h1 {
             font-size: 2rem;
             font-weight: normal;
-        }
-        & .diagramExercise {
-            font-weight: bold;
         }
         & h2 {
             font-size: 1rem;

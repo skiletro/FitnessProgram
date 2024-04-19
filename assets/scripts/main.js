@@ -1,5 +1,6 @@
 import { clearAllCalendarElements, createCalendarElements, updateText} from "./modules/calendarLogic.js";
-import { SelectBodypart } from "./modules/diagramSelector.js";
+import "./modules/diagramSelector.js";
+import "./modules/exercisePlanClass.js"
 import "./modules/exerciseViewer.js";
 
 var selectedDate = new Date();
@@ -19,6 +20,21 @@ function updateCalendarElements(date) {
 // Navigation Buttons
 document.getElementById("navExercises").addEventListener("click", () => {
     document.getElementById("exerciseViewer").open = true;
+});
+
+document.getElementById("navAbout").addEventListener("click", () => {
+    document.getElementById("aboutDialog").open = true;
+});
+
+function openDiagramPicker() {
+    document.getElementById("diagramPicker").open = true;
+    imageMapResize();
+}
+document.getElementById("navAdd").addEventListener("click", openDiagramPicker);
+document.getElementById("addButton").addEventListener("click", openDiagramPicker);
+
+document.getElementById("navSettings").addEventListener("click", () => {
+    document.getElementById("settingsDialog").open = true;
 });
 
 // Calendar
@@ -45,18 +61,10 @@ document.getElementById("gotoNextMonth").addEventListener("click", () => {
     updateCalendarElements(selectedDate);
 });
 
-function openDiagramPicker() {
-    document.getElementById("diagramPicker").open = true;
-    imageMapResize();
-}
-document.getElementById("navAdd").addEventListener("click", openDiagramPicker);
-document.getElementById("addButton").addEventListener("click", openDiagramPicker);
-
 // Close button logic for every dialog that has a close button element
 document.querySelectorAll(".closeButton").forEach(button => {
     button.addEventListener("click", (event) => {
         let parent = event.target.dataset.parent;
-        console.log(parent);
         document.getElementById(parent).open = false;
     });
 });
