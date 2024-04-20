@@ -1,7 +1,8 @@
-import { clearAllCalendarElements, createCalendarElements, updateText} from "./modules/calendarLogic.js";
+import "./libraries/imageMapResizer.min.js";
+import { clearAllCalendarElements, createCalendarElements, updateText, updateCalendarElements } from "./modules/calendarLogic.js";
 import "./modules/diagramSelector.js";
-import "./modules/exercisePlanClass.js"
 import "./modules/exerciseViewer.js";
+import "./modules/settingsLogic.js";
 
 var selectedDate = new Date();
 selectedDate.setHours(0,0,0,0);
@@ -10,12 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     createCalendarElements(selectedDate);
     updateText(selectedDate);
 });
-
-function updateCalendarElements(date) {
-    clearAllCalendarElements();
-    createCalendarElements(date);
-    updateText(date);
-}
 
 // Navigation Buttons
 document.getElementById("navExercises").addEventListener("click", () => {

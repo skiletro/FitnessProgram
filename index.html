@@ -100,6 +100,14 @@
                         <h2>Here are some exercises that involve <span class="diagramExercise bold">nothing</span>...</h2>
                         <p id="diagramExerciseInformation"></p>
                     </div>
+                    <div class="difficulty">
+                        <label for="difficultyOption">Difficulty</label>
+                        <select id="difficultyOption">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
                     <div id="buttons">
                         <button id="removeBodypart" class="secondary">Remove Last Selection</button>
                         <button id="submitExercises" class="primary">Submit</button>
@@ -117,7 +125,7 @@
                 Settings
             </div>
             <div class="content">
-                Here be some settings in the future...
+                <button id="settingsResetLocalStorage">Reset Local Storage</button>
             </div>
             <button class="closeButton" data-parent="settingsDialog">
                 <i class="fa-solid fa-xmark"></i>
@@ -134,9 +142,7 @@
                 <div id="informationDate">1st January 1970</div>
                 <div class="title">What do I need to do today?</div>
                 <div class="subtitle">Focusing on <span id="informationExerciseNames">nothing</span> today...</div>
-                <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis dolorem, dolores vitae deleniti reprehenderit cum unde! Debitis magnam atque est ad placeat necessitatibus distinctio hic natus, repudiandae cumque perspiciatis ipsum.
-                </div>
+                <div id="informationExerciseDescriptions"></div>
             </div>
             <div id="calendar">
                 <div class="header">
@@ -170,7 +176,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/02439252d4.js" crossorigin="anonymous"></script>
-    <script src="assets/scripts/libraries/imageMapResizer.min.js"></script>
     <script type="module" src="assets/scripts/main.js"></script>
 </body>
 </html>

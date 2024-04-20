@@ -84,6 +84,12 @@ export function createCalendarElements(date) {
     });
 };
 
+export function updateCalendarElements(date) {
+    clearAllCalendarElements();
+    createCalendarElements(date);
+    updateText(date);
+};
+
 function changeDay(element) {
     now.setDate(element.dataset.day);
     updateCalendarElements(now);
@@ -91,9 +97,25 @@ function changeDay(element) {
 
 export function updateText(date) {
     let day = new Date(date);
+    day.setHours(0,0,0,0);
     document.getElementById("calendarMonth").innerText = day.toLocaleString('default', { month: 'long' });
     document.getElementById("calendarYear").innerText = day.getFullYear();
 
     document.getElementById("informationDayName").innerText = day.toLocaleString('default', { weekday: "long"})
     document.getElementById("informationDate").innerText = getWrittenDate(day);
+
+    try {
+        let obj = JSON.parse(localStorage.getItem(day));
+    
+        document.getElementById("informationExerciseNames").innerText = obj.bodyPart.join(", ");
+        document.getElementById("informationExerciseDescriptions").innerText = "";
+        obj.exercises.forEach(exercise => {
+            let name = exercise.reps + "x " + exercise.exerciseName + "\n";
+            document.getElementById("informationExerciseDescriptions").innerText = document.getElementById("informationExerciseDescriptions").innerText + name;
+        });
+    }
+    catch (TypeError) {
+        document.getElementById("informationExerciseNames").innerText = "nothing";
+        document.getElementById("informationExerciseDescriptions").innerText = "";
+    }
 };

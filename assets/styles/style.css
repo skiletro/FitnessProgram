@@ -56,6 +56,10 @@ body {
     box-shadow: var(--shadow);
     border: var(--borderStyle);
 
+    & img {
+        color: red;
+    }
+
     &:hover {
         background-color: color-mix(in srgb, black 10%, var(--accent));
         cursor: pointer;
@@ -440,7 +444,7 @@ dialog {
         border: var(--borderStyle);
         border-radius: var(--borderRadius);
         width: 30rem;
-        height: 39rem;
+        height: 34rem;
         padding: 1rem;
         overflow-y: scroll;
         & h1 {
@@ -454,6 +458,25 @@ dialog {
         & p {
             font-size: 1.25rem;
             text-overflow: ellipsis;
+        }
+    }
+    & .difficulty {
+        display: flex;
+        flex-direction: row;
+        align-items:  center;
+        gap: 0.5rem;
+
+        & label {
+            font-size: 1.25rem;
+        }
+
+        & select {
+            font-size: 1rem;
+            background-color: white;
+            border: var(--borderStyle);
+            border-radius: var(--borderRadius);
+            padding: 0.25rem;
+            text-align: center;
         }
     }
     & #buttons {
