@@ -1,5 +1,5 @@
 import "./libraries/imageMapResizer.min.js";
-import { clearAllCalendarElements, createCalendarElements, updateText, updateCalendarElements } from "./modules/calendarLogic.js";
+import { createCalendarElements, updateText, updateCalendarElements } from "./modules/calendarLogic.js";
 import "./modules/diagramSelector.js";
 import "./modules/exerciseViewer.js";
 import "./modules/settingsLogic.js";
