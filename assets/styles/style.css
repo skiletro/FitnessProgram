@@ -36,6 +36,8 @@ body {
 
 .italic { font-style: italic; }
 
+.accent { color: var(--accent) };
+
 #addButton {
     display: flex;
     align-items: center;
@@ -154,6 +156,17 @@ body {
 
     & .subtitle {
         font-size: 1.25rem;
+    }
+
+    & #informationExerciseDescriptions {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            display: flex;
+            flex-direction: row;
+            gap: 0.3rem;
+        }
     }
 }
 

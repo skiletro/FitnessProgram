@@ -1,3 +1,9 @@
+function emptyElement(element) {
+    while (element.lastElementChild) {
+        element.removeChild(element.lastElementChild);
+    }
+}
+
 function getDaySuffix(day) {
     return day = (day === 1 || day === 21 || day === 31) ? 'st' :
                    (day === 2 || day === 22) ? 'nd' :
@@ -52,13 +58,6 @@ export function generateCalendarArray(date) {
     return daysOfTheMonth;
 }
 
-export function clearAllCalendarElements() {
-    let daysContainer = document.getElementById("days");
-    while (daysContainer.lastElementChild) {
-        daysContainer.removeChild(daysContainer.lastElementChild);
-    }
-};
-
 export function createCalendarElements(date) {
     let daysOfTheMonth = generateCalendarArray(new Date(date));
 
@@ -85,14 +84,9 @@ export function createCalendarElements(date) {
 };
 
 export function updateCalendarElements(date) {
-    clearAllCalendarElements();
+    emptyElement(document.getElementById("days"));
     createCalendarElements(date);
     updateText(date);
-};
-
-function changeDay(element) {
-    now.setDate(element.dataset.day);
-    updateCalendarElements(now);
 };
 
 export function updateText(date) {
@@ -104,18 +98,33 @@ export function updateText(date) {
     document.getElementById("informationDayName").innerText = day.toLocaleString('default', { weekday: "long"})
     document.getElementById("informationDate").innerText = getWrittenDate(day);
 
-    try {
-        let obj = JSON.parse(localStorage.getItem(day));
-    
-        document.getElementById("informationExerciseNames").innerText = obj.bodyPart.join(", ");
-        document.getElementById("informationExerciseDescriptions").innerText = "";
-        obj.exercises.forEach(exercise => {
-            let name = exercise.reps + "x " + exercise.exerciseName + "\n";
-            document.getElementById("informationExerciseDescriptions").innerText = document.getElementById("informationExerciseDescriptions").innerText + name;
+
+    let dayObject = JSON.parse(localStorage.getItem(day));
+    let name = document.getElementById("informationExerciseNames");
+    let desc = document.getElementById("informationExerciseDescriptions");
+
+    // Empty the description element, ready for new information.
+    emptyElement(desc);
+
+    if (dayObject != null ) { // If there is deta at that day
+        name.innerText = dayObject.bodyPart.join(", ");
+
+        dayObject.exercises.forEach(exercise => {
+            let exerciseElement = document.createElement("span");
+            
+            let repsElement = document.createElement("span");
+            repsElement.innerText = exercise.reps + "x";
+            repsElement.classList.add("accent");
+
+            let nameElement = document.createElement("span");
+            nameElement.innerText = exercise.exerciseName;
+
+            exerciseElement.appendChild(repsElement);
+            exerciseElement.appendChild(nameElement);
+
+            desc.appendChild(exerciseElement);
         });
-    }
-    catch (TypeError) {
-        document.getElementById("informationExerciseNames").innerText = "nothing";
-        document.getElementById("informationExerciseDescriptions").innerText = "";
+    } else {
+        name.innerText = "nothing"
     }
 };
