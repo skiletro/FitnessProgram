@@ -1,3 +1,5 @@
+import { loadExerciseData, getExerciseObjectFromName } from "./exerciseViewer.js";
+
 function emptyElement(element) {
     while (element.lastElementChild) {
         element.removeChild(element.lastElementChild);
@@ -110,7 +112,12 @@ export function updateText(date) {
         name.innerText = dayObject.bodyPart.join(", ");
 
         dayObject.exercises.forEach(exercise => {
-            let exerciseElement = document.createElement("span");
+            let exerciseElement = document.createElement("a");
+            exerciseElement.onclick = () => {
+                let object = getExerciseObjectFromName(exercise.exerciseName);
+                loadExerciseData(object);
+                document.getElementById("exerciseViewer").open = true;
+            };
             
             let repsElement = document.createElement("span");
             repsElement.innerText = exercise.reps + "x";
