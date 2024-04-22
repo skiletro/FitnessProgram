@@ -90,7 +90,10 @@ document.getElementById("submitExercises").addEventListener("click", async () =>
             for (let index = 0; index < 3; index++) {
                 let randomNumber = Math.floor(Math.random() * exercisesThatMatchFilter.length);
                 // Start with 3 reps
-                let exercise = new Exercise(3, exercisesThatMatchFilter[randomNumber]);
+                let min = 1;
+                let max = 5;
+                let amountOfReps = Math.floor(Math.random() * (max - min + 1)) + min
+                let exercise = new Exercise(amountOfReps, exercisesThatMatchFilter[randomNumber]);
                 exercises.push(exercise);                
             }
         });
