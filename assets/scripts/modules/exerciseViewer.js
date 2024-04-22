@@ -42,7 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         exerciseLabel.textContent = element.name;
         exerciseLabel.dataset.exercise = element.name;
-        exerciseLabel.onclick = loadExerciseData(element);
+        exerciseLabel.onclick = () => {
+            loadExerciseData(element);
+        };
         exerciseLabel.style.cursor = "pointer";
 
         sidebar.appendChild(exerciseLabel);
