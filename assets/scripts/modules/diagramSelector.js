@@ -94,8 +94,6 @@ document.getElementById("submitExercises").addEventListener("click", async () =>
                 exercises.push(exercise);                
             }
         });
-
-        console.log(exercises);
     
         for (let index = 0; index < 28; index++) {
             let exercisePlan = new ExercisePlan(difficulty, selectedBodyparts, exercises);
