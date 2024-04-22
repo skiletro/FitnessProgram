@@ -1,0 +1,10 @@
+{
+    "name": "ExerPlan",
+    "short_name": "ExerPlan",
+    "theme_color": "#ab4aff",
+    "background_color": "#ffffff",
+    "display": "browser",
+    "orientation": "landscape",
+    "scope": "/",
+    "start_url": "/"
+  }
