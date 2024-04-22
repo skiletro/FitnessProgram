@@ -72,6 +72,14 @@ export function createCalendarElements(date) {
             dayElement.dataset.day = element.getDate();
             dayElement.dataset.date = element;
             dayElement.classList.add('populated');
+
+            if (element in localStorage) {
+                let orb = document.createElement("div");
+                orb.classList.add('orb');
+                dayElement.appendChild(orb);
+            }
+            
+
         } else {
             dayElement.textContent = "0";
             dayElement.classList.add('empty');

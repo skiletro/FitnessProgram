@@ -256,8 +256,7 @@ body {
     font-size: 1.25rem;
 
     & > * {
-        display: flex;
-        justify-content: right;
+        text-align: right;
         --padding: 0.5rem;
         padding: var(--padding);
         background-color: var(--background);
@@ -272,6 +271,17 @@ body {
         
         &:hover {
             background-color: var(--hover);
+        }
+
+        & .orb {
+            display: block;
+            margin-top: 0.25rem;
+            margin-left: auto;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 100%;
+            box-shadow: var(--shadow);
+            background-color: var(--accent);
         }
 
         & > * {
