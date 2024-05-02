@@ -1,3 +1,4 @@
+import { ZeroedDate } from "../libraries/handyFunctions.js";
 import { loadExerciseData, getExerciseObjectFromName } from "./exerciseViewer.js";
 
 function emptyElement(element) {
@@ -67,13 +68,13 @@ export function createCalendarElements(date) {
     daysOfTheMonth.forEach(element => {
         let dayElement = document.createElement("div");
 
-        if (element.toString() != new Date(0).toString()) { // Converting to string bc javascript is fucking stupid
+        if (element.toString() != new Date(0).toString()) { // Converting to string bc JavaScript types are stupid
             dayElement.textContent = element.getDate() + getDaySuffix(element.getDate());
             dayElement.dataset.day = element.getDate();
             dayElement.dataset.date = element;
             dayElement.classList.add('populated');
 
-            if (element in localStorage) {
+            if (element in localStorage) { // If an entry for it exists in local storage...
                 let orb = document.createElement("div");
                 orb.classList.add('orb');
                 dayElement.appendChild(orb);
@@ -100,8 +101,7 @@ export function updateCalendarElements(date) {
 };
 
 export function updateText(date) {
-    let day = new Date(date);
-    day.setHours(0,0,0,0);
+    let day = ZeroedDate(date);
     document.getElementById("calendarMonth").innerText = day.toLocaleString('default', { month: 'long' });
     document.getElementById("calendarYear").innerText = day.getFullYear();
 

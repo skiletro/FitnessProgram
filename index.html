@@ -12,7 +12,6 @@
         <div id="items">
             <ul>
                 <li id="navExercises">Exercises</li>
-                <li id="navAbout">About</li>
                 <li id="navAdd">Add</li>
                 <li id="navSettings">Settings</li>
             </ul>
@@ -85,19 +84,6 @@
             </button>
         </div>
     </dialog>
-    <dialog id="aboutDialog">
-        <class class="inner">
-            <div class="header">
-                ExerPlan
-            </div>
-            <div class="content">
-                Your personalised path to peak fitness
-            </div>
-            <button class="closeButton" data-parent="aboutDialog">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </class>
-    </dialog>
     <dialog id="diagramPicker">
         <div class="inner">
             <div class="header">
@@ -143,8 +129,8 @@
                         <p id="diagramExerciseInformation"></p>
                     </div>
                     <div id="buttons">
-                        <button id="removeBodypart" class="secondary">Remove Last Selection</button>
-                        <button id="submitExercises" class="primary">Submit</button>
+                        <button id="removeBodypart" class="secondary" disabled>Remove Last Selection</button>
+                        <button id="submitExercises" class="primary" disabled>Submit</button>
                     </div>
                 </div>
             </div>
@@ -160,6 +146,11 @@
             </div>
             <div class="content">
                 <button id="settingsResetLocalStorage">Reset Local Storage</button>
+                <div id="accentColorOuput"></div>
+                <div>
+                    <label for="accentColorPicker">Accent Colour</label>
+                    <input type="color" id="accentColorPicker" value="#ab4aff">
+                </div>
             </div>
             <button class="closeButton" data-parent="settingsDialog">
                 <i class="fa-solid fa-xmark"></i>

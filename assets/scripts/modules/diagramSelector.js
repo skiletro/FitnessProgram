@@ -1,9 +1,11 @@
+import { ZeroedDate } from "../libraries/handyFunctions.js";
 import { ExercisePlan, Exercise } from "../modules/exercisePlanClass.js";
 import { updateCalendarElements } from "./calendarLogic.js";
+import { createExercisePlan } from "./exercisePlanCreator.js";
 
 var exerciseData;
 var exerciseDataJson;
-const selectedBodyparts = [];
+let selectedBodyparts = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
     exerciseData = await fetch('assets/data/free-exercise-db/dist/exercises.json');
@@ -49,9 +51,21 @@ async function SelectBodypart(action) {
     selector.style.opacity = 0.7;
     selector.style.left = (clientX - parentDivRect.left) + "px";
     selector.style.top = (clientY - parentDivRect.top) + "px";
+    
+    updateButtonClickability();
 
     await UpdateBodypartInformation();
 };
+
+function updateButtonClickability() {
+    if (selectedBodyparts.length > 0) {
+        document.getElementById("removeBodypart").disabled = false;
+        document.getElementById("submitExercises").disabled = false;
+    } else {
+        document.getElementById("removeBodypart").disabled = true;
+        document.getElementById("submitExercises").disabled = true;
+    }
+}
 
 // Diagram selector
 document.getElementById("diagram").addEventListener("click", (event) => {
@@ -65,59 +79,19 @@ document.getElementById("diagram").addEventListener("click", (event) => {
 document.getElementById("removeBodypart").addEventListener("click", () => {
     selectedBodyparts.pop();
     UpdateBodypartInformation();
+    updateButtonClickability();
 });
 
 document.getElementById("submitExercises").addEventListener("click", async () => {
-    var today = new Date();
-    today.setHours(0,0,0,0);
-
-    if (selectedBodyparts != 0) {
-        let difficulty = document.getElementById("difficultyOption").value;
-
-        let date = new Date();
-        date.setHours(0, 0, 0, 0);
-
-        let exercises =  [];
-        selectedBodyparts.forEach(bodypart => {
-            let exercisesThatMatchFilter = [];
-            exerciseDataJson.forEach(element => {
-                // Put every exercise that matches the filter into an array
-                if (element.primaryMuscles.includes(bodypart) && element.level == difficulty) {
-                    exercisesThatMatchFilter.push(element.name);
-                }
-            });
-
-            for (let index = 0; index < 3; index++) {
-                let randomNumber = Math.floor(Math.random() * exercisesThatMatchFilter.length);
-                // Start with 3 reps
-                let min = 1;
-                let max = 5;
-                let amountOfReps = Math.floor(Math.random() * (max - min + 1)) + min
-                let exercise = new Exercise(amountOfReps, exercisesThatMatchFilter[randomNumber]);
-                exercises.push(exercise);                
-            }
-        });
-    
-        for (let index = 0; index < 28; index++) {
-            let exercisePlan = new ExercisePlan(difficulty, selectedBodyparts, exercises);
-
-            localStorage.setItem(date, JSON.stringify(exercisePlan));
-
-            // Increment date            
-            date.setDate(date.getDate() + 1);
-        }
-
-
-        // Refresh calendar and set the date back to todays date
-        let currentDate = new Date();
-        currentDate.setHours(0,0,0,0);
-        updateCalendarElements(currentDate);
-
-        // Close dialog
-        document.getElementById("diagramPicker").open = false;
-    } else {
+    if (selectedBodyparts == 0) {
         alert("You have not selected anything. Try clicking on a body part!");
+        return;
     }
+    
+    createExercisePlan(exerciseDataJson, selectedBodyparts);
+
+    // Close dialog
+    document.getElementById("diagramPicker").open = false;
 });
 
 // Disable dragging image

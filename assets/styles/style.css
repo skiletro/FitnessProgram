@@ -8,7 +8,7 @@
     --borderStyle: 0.25rem solid black;
     --borderRadius: calc(20px * var(--scaling));
     --shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.1);
-    --transition-time: 250ms;
+    --transitionTime: 250ms;
     
     font-size: calc(16px * var(--scaling));
     font-family: 'Rubik', sans-serif;
@@ -101,7 +101,7 @@ body {
             & li {
                 display: inline;
                 font-size: 1.5rem;
-                transition: transform var(--transition-time);
+                transition: transform var(--transitionTime);
                 
                 &:hover {
                     cursor: pointer;
@@ -175,6 +175,31 @@ body {
     }
 }
 
+/* Onboarding */
+#onboarding .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    & label {
+        font-size: 1.25rem;
+    }
+
+    & select {
+        font-size: 1rem;
+        background-color: white;
+        border: var(--borderStyle);
+        border-radius: calc(var(--borderRadius) / 2);
+        padding: 0.25rem;
+        text-align: center;
+    }
+    
+    & #submitOnboarding {
+        margin-left: auto;
+        width: 13rem;
+    }
+}
+
 /* Calendar */
 #calendar {
     display: flex;
@@ -198,6 +223,7 @@ body {
     & .switcher {
         display: flex;
         margin: 0;
+
         & button {
             display: flex;
             justify-content: center;
@@ -205,10 +231,11 @@ body {
             height: 2.5rem;
             font-size: 1.25rem;
             background-color: var(--background);
-            transition: background-color var(--transition-time);
+            transition: background-color var(--transitionTime);
             border: var(--borderStyle);
             padding: 0 0.5rem;
             cursor: pointer;
+            border-radius: 0;
 
             &:hover {
                 background-color: var(--hover);
@@ -260,7 +287,7 @@ body {
         --padding: 0.5rem;
         padding: var(--padding);
         background-color: var(--background);
-        transition: background-color var(--transition-time);
+        transition: background-color var(--transitionTime);
         border: var(--borderStyle);
         border-radius: calc(var(--borderRadius) - var(--padding));
         cursor: pointer;
@@ -329,9 +356,10 @@ dialog {
         background-color: white;
         border: var(--borderStyle);
         border-radius: 100%;
+        padding: 0;
         box-shadow: var(--shadow);
         cursor: pointer;
-        transition: background-color var(--transition-time);
+        transition: background-color var(--transitionTime);
 
         &:hover {
             background-color: var(--hover);
@@ -395,7 +423,7 @@ dialog {
             & li {
                 font-size: 1.25rem;
                 padding: 0.3rem 0rem;
-                transition: background-color var(--transition-time);
+                transition: background-color var(--transitionTime);
 
                 &:hover {
                     background-color: var(--hover);
@@ -472,7 +500,7 @@ dialog {
         border: var(--borderStyle);
         border-radius: var(--borderRadius);
         width: 30rem;
-        height: 34rem;
+        height: 39rem;
         padding: 1rem;
         overflow-y: scroll;
         & h1 {
@@ -488,51 +516,11 @@ dialog {
             text-overflow: ellipsis;
         }
     }
-    & .difficulty {
-        display: flex;
-        flex-direction: row;
-        align-items:  center;
-        gap: 0.5rem;
+}
 
-        & label {
-            font-size: 1.25rem;
-        }
-
-        & select {
-            font-size: 1rem;
-            background-color: white;
-            border: var(--borderStyle);
-            border-radius: var(--borderRadius);
-            padding: 0.25rem;
-            text-align: center;
-        }
-    }
-    & #buttons {
-        & button {
-            border: var(--borderStyle);
-            border-radius: var(--borderRadius);
-            font-size: 1.5rem;
-            padding: 0.5rem 1rem;
-            text-shadow: var(--shadow);
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: var(--transition-time) background-color;
-        }
-        & .primary {
-            background-color: var(--accent);
-            color: white;
-            &:hover {
-                background-color: color-mix(in srgb, black 20%, var(--accent));
-            }
-        }
-        & .secondary {
-            background-color: white;
-            color: black;
-            &:hover {
-                background-color: color-mix(in srgb, black 10%, white);
-            }
-        }
-    }
+#settingsDialog .content {
+    display: flex;
+    flex-direction: column;
 }
 
 /* Tag */
@@ -568,4 +556,49 @@ dialog {
             opacity:0;
         }
     }
-}   
+}
+
+/* Regular Button */
+button {
+    border: var(--borderStyle);
+    border-radius: var(--borderRadius);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    text-shadow: var(--shadow);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: var(--transitionTime) background-color;
+
+    &.primary {
+        background-color: var(--accent);
+        color: white;
+        &:hover {
+            background-color: color-mix(in srgb, black 20%, var(--accent));
+        }
+    }
+
+    &.secondary {
+        background-color: white;
+        color: black;
+        &:hover {
+            background-color: color-mix(in srgb, black 10%, white);
+        }
+    }
+
+    &:disabled {
+        opacity: 0.55;
+        pointer-events: none;
+    }
+}
+
+/* Options */
+input[type="color"] {
+    border: var(--borderStyle);
+    border-radius: calc(var(--borderRadius) / 2);
+    opacity: 1;
+    transition: var(--transitionTime) opacity;
+
+    &.invalid {
+        opacity: 0.5;
+    }
+}
