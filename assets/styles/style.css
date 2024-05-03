@@ -146,7 +146,7 @@ body {
     min-width: var(--width);
     max-width: var(--width);
     padding: 0.5rem;
-    box-shadow: var(--shadow);
+    overflow-y: scroll;
 
     & #informationDayName {
         font-size: 2.5rem;
@@ -192,19 +192,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-
-    & label {
-        font-size: 1.25rem;
-    }
-
-    & select {
-        font-size: 1rem;
-        background-color: white;
-        border: var(--borderStyle);
-        border-radius: calc(var(--borderRadius) / 2);
-        padding: 0.25rem;
-        text-align: center;
-    }
     
     & #submitOnboarding {
         margin-left: auto;
@@ -533,6 +520,7 @@ dialog {
 #settingsDialog .content {
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
 }
 
 /* Tag */
@@ -607,10 +595,32 @@ button {
 input[type="color"] {
     border: var(--borderStyle);
     border-radius: calc(var(--borderRadius) / 2);
+    box-shadow: var(--shadow);
     opacity: 1;
     transition: var(--transitionTime) opacity;
+    cursor: pointer;
 
     &.invalid {
         opacity: 0.5;
     }
+}
+
+label {
+    font-size: 1.25rem;
+}
+
+select {
+    font-size: 1rem;
+    background-color: white;
+    border: var(--borderStyle);
+    border-radius: calc(var(--borderRadius) / 2);
+    padding: 0.25rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.labelCombo {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
 }

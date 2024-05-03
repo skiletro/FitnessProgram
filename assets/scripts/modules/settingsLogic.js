@@ -1,15 +1,21 @@
-import { ZeroedDate } from "../libraries/handyFunctions.js";
+import { ZeroedDate, getSelectValues } from "../libraries/handyFunctions.js";
 import { updateCalendarElements } from "./calendarLogic.js";
 
 // Reset Local Storage
 function resetLocalStorage() {
-    localStorage.clear();
-    let currentDate = ZeroedDate();
-    updateCalendarElements(currentDate);
-    alert("Done!");
-    location.reload();
+
+    if (confirm("Are you sure you want to reset the settings? It will return the app to default settings.")) {
+        localStorage.clear();
+        let currentDate = ZeroedDate();
+        updateCalendarElements(currentDate);
+        alert("Settings successfully reset. Reloading the page...");
+        location.reload();
+    } else {
+        alert("Aborted.");
+    }
 }
-document.getElementById("settingsResetLocalStorage").addEventListener("click", resetLocalStorage);
+
+document.getElementById("settingsResetLocalStorage").addEventListener("click", () => {resetLocalStorage();});
 
 // Accent Colour
 function hex2rgb(hex) {
@@ -43,4 +49,25 @@ export function setAccentColor(inputColorPicker) {
 const colorInput = document.getElementById("accentColorPicker");
 colorInput.addEventListener("input", () => {
     setAccentColor(colorInput);
+});
+
+export function loadSettingsText() {
+    document.getElementById("currentlySelectedDifficulty").innerText = localStorage.getItem("preferenceDifficulty");
+    document.getElementById("currentlySelectedEquipment").innerText = localStorage.getItem("preferenceEquipment").split("|").join(", ");
+}
+
+document.getElementById("submitSettings").addEventListener("click", () => {
+
+    let difficultyOption = document.getElementById("difficultyOptionSettings");
+    let equipmentOption = document.getElementById("equipmentOptionSettings");
+
+    if (getSelectValues(equipmentOption).length > 0) {
+        localStorage.setItem("preferenceOnboarding", true);
+        localStorage.setItem("preferenceDifficulty", difficultyOption.value);
+        localStorage.setItem("preferenceEquipment", getSelectValues(equipmentOption).join("|"));
+        loadSettingsText();
+    } else {
+        alert("Please make sure you select at least one equipment option.");
+    }
+
 });

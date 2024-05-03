@@ -4,7 +4,7 @@ import { createCalendarElements, updateText, updateCalendarElements } from "./mo
 import "./modules/diagramSelector.js";
 import "./modules/exerciseViewer.js";
 import "./modules/settingsLogic.js";
-import { setAccentColor } from "./modules/settingsLogic.js";
+import { loadSettingsText, setAccentColor } from "./modules/settingsLogic.js";
 
 var selectedDate = ZeroedDate();
 
@@ -40,6 +40,7 @@ document.getElementById("addButton").addEventListener("click", openDiagramPicker
 
 document.getElementById("navSettings").addEventListener("click", () => {
     document.getElementById("settingsDialog").open = true;
+    loadSettingsText();
 });
 
 // Onboarding

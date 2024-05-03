@@ -52,7 +52,7 @@
                         <option value="other">Miscellaneous Equipment</option>
                     </select>
 
-                <div class="accentColor">
+                <div class="labelCombo">
                     <label for="accentOption">Accent Colour</label>
                     <input type="color" id="accentOption" value="#ab4aff">
                 </div>
@@ -147,12 +147,43 @@
                 Settings
             </div>
             <div class="content">
-                <button id="settingsResetLocalStorage">Reset Local Storage</button>
-                <div id="accentColorOuput"></div>
-                <div>
+                <button id="settingsResetLocalStorage">Reset Settings</button>
+
+                <div class="labelCombo">
                     <label for="accentColorPicker">Accent Colour</label>
                     <input type="color" id="accentColorPicker" value="#ab4aff">
                 </div>
+
+                <div class="difficulty">
+                    <label for="difficultyOptionSettings">What stage would you say you are at?</label>
+                    <select id="difficultyOptionSettings">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <label for="equipmentOptionSettings">What equipment do you have? <sub>(Hold CONTROL to select multiple!)</sub></label>
+                <select id="equipmentOptionSettings" multiple size="6">
+                    <option value="none">None</option>
+                    <option value="barbell">Barbell</option>
+                    <option value="dumbbell">Dumbbell</option>
+                    <option value="cable">Cable</option>
+                    <option value="machine">Machine</option>
+                    <option value="kettlebells">Kettlebells</option>
+                    <option value="bands">Bands</option>
+                    <option value="medicine ball">Medicine Ball</option>
+                    <option value="exercise ball">Exercise Ball</option>
+                    <option value="foam roll">Foam Roll</option>
+                    <option value="e-z curl bar">Curl Bar</option>
+                    <option value="other">Miscellaneous Equipment</option>
+                </select>
+
+                <div>You have currently selected the following difficulty: <span class="accent" id="currentlySelectedDifficulty"></span></div>
+                <div>You have currently selected the following equipment: <span class="accent" id="currentlySelectedEquipment"></span></div>
+
+                <button id="submitSettings" class="primary">Save</button>
+
             </div>
             <button class="closeButton" data-parent="settingsDialog">
                 <i class="fa-solid fa-xmark"></i>

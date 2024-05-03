@@ -36,7 +36,7 @@ export function createExercisePlan(dataset, selectedBodyparts) {
         let amountOfExercisesForBodypart = Math.min(3, exercisesThatMatchFilter.length);
         let index = 0;
         while (index < amountOfExercisesForBodypart) {
-            let exercise = exercisesThatMatchFilter[randomNumberGenerator(1, exercisesThatMatchFilter.length - 1)];
+            let exercise = exercisesThatMatchFilter[randomNumberGenerator(0, exercisesThatMatchFilter.length - 1)];
             if (!listOfExercises.includes(exercise)) {
                 listOfExercises.push(exercise);
                 index++;
@@ -51,17 +51,21 @@ export function createExercisePlan(dataset, selectedBodyparts) {
 
         // Sources vary massively depending on the amount of reps is best... This code should try and ramp up the amount of exercises done throughout the month
         let lowerEndOfReps;
+        let upperEndOfReps;
         if (index >= 18) {
             lowerEndOfReps = 4;
+            upperEndOfReps = 8;
         } else if (index >= 9) {
             lowerEndOfReps = 3;
+            upperEndOfReps = 7;
         } else {
             lowerEndOfReps = 2;
+            upperEndOfReps = 6;
         }
 
         // Generate a new exercise regiment
         listOfExercises.forEach(exercise => {
-            let amountOfReps = randomNumberGenerator(lowerEndOfReps, 8);
+            let amountOfReps = randomNumberGenerator(lowerEndOfReps, upperEndOfReps);
             listOfExercisesToDo.push(new Exercise(amountOfReps, exercise))
         });
 
