@@ -46,7 +46,8 @@ export function createExercisePlan(dataset, selectedBodyparts) {
     });
 
     // For each day...
-    for (let index = 0; index < 28; index++) {
+    let routineLength = localStorage.getItem("preferenceRoutineLength");
+    for (let index = 0; index < routineLength; index++) {
         let listOfExercisesToDo = [];
 
         // Sources vary massively depending on the amount of reps is best... This code should try and ramp up the amount of exercises done throughout the month

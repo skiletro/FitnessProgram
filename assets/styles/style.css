@@ -592,7 +592,8 @@ button {
 }
 
 /* Options */
-input[type="color"] {
+input[type="color"],
+input[type="number"] {
     border: var(--borderStyle);
     border-radius: calc(var(--borderRadius) / 2);
     box-shadow: var(--shadow);
@@ -603,6 +604,11 @@ input[type="color"] {
     &.invalid {
         opacity: 0.5;
     }
+}
+
+input[type="number"] {
+    text-align: center;
+    font-size: 1.25rem;
 }
 
 label {

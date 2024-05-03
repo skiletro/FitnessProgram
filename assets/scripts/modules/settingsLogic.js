@@ -3,7 +3,6 @@ import { updateCalendarElements } from "./calendarLogic.js";
 
 // Reset Local Storage
 function resetLocalStorage() {
-
     if (confirm("Are you sure you want to reset the settings? It will return the app to default settings.")) {
         localStorage.clear();
         let currentDate = ZeroedDate();
@@ -54,17 +53,19 @@ colorInput.addEventListener("input", () => {
 export function loadSettingsText() {
     document.getElementById("currentlySelectedDifficulty").innerText = localStorage.getItem("preferenceDifficulty");
     document.getElementById("currentlySelectedEquipment").innerText = localStorage.getItem("preferenceEquipment").split("|").join(", ");
+    document.getElementById("routineLengthOptionSettings").value = localStorage.getItem("preferenceRoutineLength");
 }
 
 document.getElementById("submitSettings").addEventListener("click", () => {
-
     let difficultyOption = document.getElementById("difficultyOptionSettings");
     let equipmentOption = document.getElementById("equipmentOptionSettings");
+    let routineLengthOption = document.getElementById("routineLengthOptionSettings");
 
     if (getSelectValues(equipmentOption).length > 0) {
         localStorage.setItem("preferenceOnboarding", true);
         localStorage.setItem("preferenceDifficulty", difficultyOption.value);
         localStorage.setItem("preferenceEquipment", getSelectValues(equipmentOption).join("|"));
+        localStorage.setItem("preferenceRoutineLength", routineLengthOption.value);
         loadSettingsText();
     } else {
         alert("Please make sure you select at least one equipment option.");

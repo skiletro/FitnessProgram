@@ -57,6 +57,7 @@ document.getElementById("submitOnboarding").addEventListener("click", () => {
         localStorage.setItem("preferenceOnboarding", true);
         localStorage.setItem("preferenceDifficulty", difficultyOption.value);
         localStorage.setItem("preferenceEquipment", getSelectValues(equipmentOption).join("|"));
+        localStorage.setItem("preferenceRoutineLength", 28);
         document.getElementById("onboarding").open = false;
     } else {
         alert("Please make sure you select at least one equipment option.");
