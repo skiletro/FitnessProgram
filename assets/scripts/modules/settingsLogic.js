@@ -2,7 +2,7 @@ import { ZeroedDate, getSelectValues } from "../libraries/handyFunctions.js";
 import { updateCalendarElements } from "./calendarLogic.js";
 
 // Reset Local Storage
-function resetLocalStorage() {
+document.getElementById("settingsResetLocalStorage").addEventListener("click", () => {
     if (confirm("Are you sure you want to reset the settings? It will return the app to default settings.")) {
         localStorage.clear();
         let currentDate = ZeroedDate();
@@ -12,9 +12,52 @@ function resetLocalStorage() {
     } else {
         alert("Aborted.");
     }
-}
+});
 
-document.getElementById("settingsResetLocalStorage").addEventListener("click", () => {resetLocalStorage();});
+// Export Local Storage
+document.getElementById("settingsExport").addEventListener("click", () => {
+    let dataToExport = JSON.stringify(localStorage);
+    let blob = new Blob([dataToExport], { type: "application/json" });
+
+    let element = document.createElement("a");
+    element.href = URL.createObjectURL(blob);
+    element.target = "_blank";
+    element.download = "exerplan_exported_data.json";
+    element.click();
+});
+
+// Import Local Storage
+document.getElementById("settingsImport").addEventListener("click", () => {
+    let filePicker = document.createElement("input");
+    filePicker.setAttribute("type", "file");
+    filePicker.addEventListener("change", (event) => {
+        let file = event.target.files[0]; // Get the selected file
+
+        // Read the file
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            let contents = e.target.result; // Get the file contents
+            
+            // Clear localStorage and import file
+            try {
+                const importedObject = JSON.parse(contents);
+                localStorage.clear();
+                Object.keys(importedObject).forEach((keyName) => {
+                    localStorage.setItem(keyName, importedObject[keyName]);
+                });
+                alert("Imported successfully... Reloading the page to confirm the changes...");
+                location.reload();
+            } catch (error) {
+                alert("There was an error importing the file. \n\n" + error + "\n\nThis is likely due to an error with the exported file, or you submitted an invalid file.");
+            }
+
+        };
+        reader.readAsText(file); // Read file as text
+    });
+
+    // Trigger the file picker dialog
+    filePicker.click();
+});
 
 // Accent Colour
 function hex2rgb(hex) {
