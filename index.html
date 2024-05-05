@@ -14,6 +14,7 @@
         <div id="items">
             <ul>
                 <li id="navExercises">Exercises</li>
+                <li id="navHelp">Help</li>
                 <li id="navAdd">Add</li>
                 <li id="navSettings">Settings</li>
             </ul>
@@ -137,6 +138,67 @@
                 </div>
             </div>
             <button class="closeButton" data-parent="diagramPicker">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </dialog>
+    <dialog id="helpPrompt" open>
+        <div class="inner">
+            <div class="header">
+                I have a <span class="bold">question</span>...
+            </div>
+            <div class="content">
+                <div>
+                    <h1>1. How do I get started?</h1>
+                    <p>
+                        Assuming you got to this page the regular way, you have already completed onboarding and are already set to start using the app!
+                        However before we proceed, you can visit the <code>Settings</code> page from the top navigation bar to change any settings you set if you changed your mind.
+                        You can now click the "<i class="fa-solid fa-plus"></i>" button in the bottom right corner, or the "<code>Add</code>" button in the navigation bar to open the <code>Add a New Body Part</code> prompt.
+                        From there, it is as simple as clicking on the body parts you would like to work on or improve, and then click <code>Submit</code>!
+                        The program will do the rest of the work, creating a personalized plan to target the muscles you selected.
+                        You will be able to see some days on the calendar have been populated with a "<i class="accent fa-solid fa-circle"></i>" icon: clicking days with this icon will show you what needs to be done on that particular day.
+                        Clicking on an exercise in the information bar on the left will bring you to the exercise encyclopedia where you can find more information.
+                    </p>
+                </div>
+                <div>
+                    <h1>2. How can I find more information about an exercise?</h1>
+                    <p>
+                        Clicking the <code>Exercises</code> button in the navigation bar will lead you to a dialog which allows you to select the name of any exercise, and the app will give you all the information you may need: such as instructions, images, and if any equipment is required.
+                    </p>
+                </div>
+                <div>
+                    <h1>3. How can I change the accent colour of the app?</h1>
+                    <p>
+                        Click the <code>Settings</code> button in the navigation bar to open the Settings dialog.
+                        From there, you will be able to select a new accent colour for the application.
+                        If the colour you selected is invalid, the preview window will turn translucent and will not save until you select a valid colour.
+                    </p>
+                </div>
+                <div>
+                    <h1>4. Can I import or export the data from the app?</h1>
+                    <p>
+                        Yes!
+                        To do this, click the <code>Settings</code> button in the navigation bar to open the Settings dialog.
+                        From there, you will be able to click the <code>Import</code> or <code>Export</code> buttons to perform the actions.
+                        The settings will be exported as a <code>json</code> file.
+                    </p>
+                </div>
+                <div>
+                    <h1>5. Where is my data stored?</h1>
+                    <p>
+                        All the data for the app is stored locally on-device.
+                        Clearing site data for this website will clear your settings, and any routines you may have saved, so be careful when clearing your cookies.
+                        If you are worried about losing your data, make sure to do regular backups by exporting your data.
+                    </p>
+                </div>
+                <div>
+                    <h1>6. I want to create a routine for a day other than today. How would I do this?</h1>
+                    <p>
+                        At this current moment in time, it is not possible to create a routine which starts on any day other than the current date.
+                    </p>
+                </div>
+            </div>
+            <button class="closeButton" data-parent="helpPrompt">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>

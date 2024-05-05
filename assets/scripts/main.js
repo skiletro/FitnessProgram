@@ -43,6 +43,10 @@ document.getElementById("navSettings").addEventListener("click", () => {
     loadSettingsText();
 });
 
+document.getElementById("navHelp").addEventListener("click", () => {
+    document.getElementById("helpPrompt").open = true;
+});
+
 // Onboarding
 let onboardingColorPicker = document.getElementById("accentOption");
 onboardingColorPicker.addEventListener("input", () => {

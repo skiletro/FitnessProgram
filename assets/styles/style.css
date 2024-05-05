@@ -523,6 +523,15 @@ dialog {
     gap: 0.25rem;
 }
 
+#helpPrompt .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 70rem;
+    height: 45rem;
+    overflow-y: scroll;
+}
+
 /* Tag */
 .tags {
     display: flex;
